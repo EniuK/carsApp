@@ -1,0 +1,5 @@
+appId: com.excitingit.carsapp
+---
+- launchApp
+- tapOn: "Tap to sign in!"
+- tapOn: "Let's go!"

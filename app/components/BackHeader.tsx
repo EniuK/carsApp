@@ -19,9 +19,12 @@ const BackHeader = ({ title, rightAccessory }: BackHeaderProps) => {
   return (
     <VStack space="4">
       <HStack style={$header}>
-        <Text>Logo</Text>
+        <Box h="60" w="60" bg="amber.400">
+          <Text>Logo</Text>
+          </Box>
+        
 
-        <Box>
+        <Box h="100" w="100" bg="amber.400">
           <CircleIcon />
           <Text>Profile</Text>
         </Box>
