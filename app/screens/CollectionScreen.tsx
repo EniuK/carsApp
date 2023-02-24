@@ -1,14 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ViewStyle } from "react-native"
+import React from "react"
+import BackHeader from "../components/BackHeader"
+import { Screen } from "../components"
+import { spacing } from "../theme"
 
 const CollectionScreen = () => {
   return (
-    <View>
-      <Text>CollectionScreen</Text>
-    </View>
+    <Screen preset="scroll" safeAreaEdges={["top"]} style={$container}>
+      <BackHeader title="Collection" />
+    </Screen>
   )
 }
 
 export default CollectionScreen
 
-const styles = StyleSheet.create({})
+const $container: ViewStyle = {
+  paddingTop: spacing.large,
+  paddingBottom: spacing.huge,
+  paddingHorizontal: spacing.large,
+}
