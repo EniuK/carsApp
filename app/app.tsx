@@ -1,7 +1,7 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React, { useCallback, useEffect } from "react"
+import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
 import { NativeBaseProvider, extendTheme } from "native-base"
@@ -11,8 +11,6 @@ import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
-import * as SplashScreen from "expo-splash-screen"
-import HomeScreen from "./screens/Home/HomeScreen"
 
 // Set up Reactotron, which is a free desktop app for inspecting and debugging
 // React Native apps. Learn more here: https://github.com/infinitered/reactotron
@@ -66,8 +64,6 @@ function App(props: AppProps) {
     isRestored: isNavigationStateRestored,
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
-  console.log(Lexend_100Thin)
-
   const [fontsLoaded] = useFonts({
     Lexend: "Lexend_100Thin",
   })
@@ -80,59 +76,29 @@ function App(props: AppProps) {
         },
       },
     },
-
-    // fonts: {
-    //   heading: "Lexend_100Thin",
-    //   body: "Lexend_100Thin",
-    //   mono: "Lexend_100Thin",
-    // },
+    colors: {
+      background: "#4D30FF",
+    },
   })
-  // useEffect(() => {
-  //   console.log(fontsLoaded)
-  // }, [fontsLoaded])
 
-  // if (!fontsLoaded) {
-  //   return null
-  // }
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync()
-  //   }
-  // }, [fontsLoaded])
+  const { rehydrated } = useInitialRootStore(() => {
+    // This runs after the root store has been initialized and rehydrated.
 
-  useEffect(() => {
-    async function prepare() {
-      try {
-        // Pre-load fonts, make any API calls you need to do here
-        await Font.loadAsync(Entypo.font)
-        // Artificially delay for two seconds to simulate a slow loading
-        // experience. Please remove this if you copy and paste the code!
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-      } catch (e) {
-        console.warn(e)
-      } finally {
-        // Tell the application to render
-        setAppIsReady(true)
-      }
-    }
+    // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.
+    // Slightly delaying splash screen hiding for better UX; can be customized or removed as needed,
+    // Note: (vanilla Android) The splash-screen will not appear if you launch your app via the terminal or Android Studio. Kill the app and launch it normally by tapping on the launcher icon. https://stackoverflow.com/a/69831106
+    // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
+    setTimeout(hideSplashScreen, 3000)
+  })
 
-    prepare()
-  }, [])
+  // Before we show the app, we have to wait for our state to be ready.
+  // In the meantime, don't render anything. This will be the background
+  // color set in native by rootView's background color.
+  // In iOS: application:didFinishLaunchingWithOptions:
+  // In Android: https://stackoverflow.com/a/45838109/204044
+  // You can replace with your own loading component if you wish.
 
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      // This tells the splash screen to hide immediately! If we call this after
-      // `setAppIsReady`, then we may see a blank screen while the app is
-      // loading its initial state and rendering its first pixels. So instead,
-      // we hide the splash screen once we know the root view has already
-      // performed layout.
-      await SplashScreen.hideAsync()
-    }
-  }, [appIsReady])
-
-  if (!appIsReady) {
-    return <View onLayout={onLayoutRootView}></View>
-  }
+  // if (!rehydrated || !isNavigationStateRestored || !fontsLoaded) return null
 
   const linking = {
     prefixes: [prefix],
@@ -147,7 +113,9 @@ function App(props: AppProps) {
             linking={linking}
             initialState={initialNavigationState}
             onStateChange={onNavigationStateChange}
-          ></AppNavigator>
+          >
+            {/* <View onLayout={onLayoutRootView}></View> */}
+          </AppNavigator>
         </ErrorBoundary>
       </SafeAreaProvider>
     </NativeBaseProvider>
