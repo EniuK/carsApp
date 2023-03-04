@@ -3,11 +3,15 @@ import React from "react"
 import BackHeader from "../components/BackHeader"
 import { Screen } from "../components"
 import { spacing } from "../theme"
+import CollectionFragment from "./Home/CollectionFragment"
+import FavoritesFragment from "./Home/FavoritesFragment"
 
 const CollectionScreen = () => {
   return (
     <Screen preset="scroll" safeAreaEdges={["top"]} style={$container}>
       <BackHeader title="Collection" />
+      <FavoritesFragment />
+      <CollectionFragment />
     </Screen>
   )
 }

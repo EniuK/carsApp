@@ -10,20 +10,30 @@ const palette = {
   neutral700: "#3C3836",
   neutral800: "#191015",
   neutral900: "#000000",
+  // SWIEZO DODANE M.S.
+  primary100: "#00008B",
+  primary200: "#012169",
+  primary300: "#191970",
+  primary400: "#002147",
+  primary500: "#002244",
+  primary600: "#003153",
 
-  primary100: "#F4E0D9",
-  primary200: "#E8C1B4",
-  primary300: "#DDA28E",
-  primary400: "#D28468",
-  primary500: "#C76542",
-  primary600: "#A54F31",
+  secondary100: "#EF0107",
+  secondary200: "#FF0800",
+  secondary300: "#F40009",
+  secondary400: "#DC143C",
+  secondary500: "#DA291C",
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
+  tetiary100: "#FFD700",
+  tetiary200: "#F0E68C",
+  tetiary300: "#FFC72C",
+  tetiary400: "#FEBE10",
+  tetiary500: "#FFFF00",
 
+  font100: "011627",
+  font200: "fdfffc",
+
+  // do tego momentu :D
   accent100: "#FFEED4",
   accent200: "#FFE1B2",
   accent300: "#FDD495",
@@ -35,6 +45,9 @@ const palette = {
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
+
+  background: "#4D30FF",
+  backgroundSecondary: "#EBEEFC",
 } as const
 
 export const colors = {
@@ -51,7 +64,7 @@ export const colors = {
   /**
    * The default text color in many components.
    */
-  text: palette.neutral800,
+  text: palette.neutral100,
   /**
    * Secondary text information.
    */
@@ -59,7 +72,7 @@ export const colors = {
   /**
    * The default color of the screen background.
    */
-  background: palette.neutral200,
+  background: palette.background,
   /**
    * The default border color.
    */

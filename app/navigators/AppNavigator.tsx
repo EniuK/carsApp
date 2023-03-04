@@ -13,21 +13,23 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useState } from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
 import { useStores } from "../models" // @demo remove-current-line
 import {
   LoginScreen, // @demo remove-current-line
-  WelcomeScreen,
 } from "../screens"
+import WelcomeScreen from "../screens/WelcomeScreen"
 import CameraScreen from "../screens/CameraScreen"
 import CollectionScreen from "../screens/CollectionScreen"
-import HomeScreen from "../screens/HomeScreen"
+import HomeScreen from "../screens/Home/HomeScreen"
 import ProfileScreen from "../screens/ProfileScreen"
 import SearchScreen from "../screens/SearchScreen"
+import ModelDetailsScreen from "../screens/ModelDetailsScreen"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
+import User from "../screens/context/User"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -44,10 +46,12 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  */
 export type AppStackParamList = {
   HomeScreen: undefined
+  WelcomeScreen: undefined
   CameraScreen: undefined
   CollectionScreen: undefined
-  ProfileScreen: undefined
   SearchScreen: undefined
+  ProfileScreen: undefined
+  ModelDetailsScreen: undefined
 }
 
 /**
@@ -70,13 +74,23 @@ const AppStack = observer(function AppStack() {
   //   authenticationStore: { isAuthenticated },
   // } = useStores()
 
+  // {logged ? "WelcomeScreen" : }
+
+  const authorized = true
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"HomeScreen"}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="CameraScreen" component={CameraScreen} />
-      <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
-      <Stack.Screen name="SearchScreen" component={SearchScreen} />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {authorized ? (
+        <Stack.Group>
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="CameraScreen" component={CameraScreen} />
+          <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
+          <Stack.Screen name="SearchScreen" component={SearchScreen} />
+          <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+          <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
+        </Stack.Group>
+      ) : (
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      )}
     </Stack.Navigator>
   )
 })
