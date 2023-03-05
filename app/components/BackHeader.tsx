@@ -40,7 +40,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
             justifyContent="center"
             mr={2}
           >
-            <Image w={30} h={30} source={profileIcon}></Image>
+            <Image w={30} h={30} source={profileIcon} alt={"profile icon"}></Image>
           </Box>
         </Touchable>
       </HStack>
@@ -58,7 +58,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
             <Box p={15} style={$navigationBarChild} />
           )}
           <Box style={[$navigationBarChild, $headerTitle]}>
-            <Text bold fontSize="md">
+            <Text bold fontSize="xl">
               {title}
             </Text>
           </Box>
