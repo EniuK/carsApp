@@ -32,7 +32,14 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           </Text>
         </Box>
         <Touchable onPress={onProfilePress}>
-          <Box alignItems="center" bg={"gray.400"} p={2} justifyContent="center" mr={2}>
+          <Box
+            alignItems="center"
+            bg={"gray.400"}
+            borderRadius={5}
+            p={2}
+            justifyContent="center"
+            mr={2}
+          >
             <Image w={30} h={30} source={profileIcon}></Image>
           </Box>
         </Touchable>
