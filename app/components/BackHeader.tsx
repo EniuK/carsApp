@@ -1,10 +1,11 @@
 import React, { useCallback } from "react"
 import { ViewBase, ViewStyle } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import { Text, Box, ChevronLeftIcon, HStack, VStack, View } from "native-base"
+import { Text, Box, ChevronLeftIcon, Image, HStack, VStack, View } from "native-base"
 import Touchable from "./Touchable"
 import { Ionicons } from "@expo/vector-icons"
 import { spacing } from "../theme"
+import profileIcon from "../../assets/images/profileIcon.png"
 
 type BackHeaderProps = {
   title: string
@@ -25,18 +26,14 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   return (
     <VStack space="4" h={130}>
       <HStack style={$header}>
-        <HStack alignItems="center" justifyContent="center" style={$logoContainer}>
-          <Ionicons name="car-sport-sharp" size={48} color="black" style={$logo} />
-          <Text fontSize="lg" bold color="white" letterSpacing="xs">
-            Cars app
+        <Box pt={0} ml={2}>
+          <Text fontSize="lg" bold color="black" letterSpacing="xs">
+            CarsApp
           </Text>
-        </HStack>
+        </Box>
         <Touchable onPress={onProfilePress}>
-          <Box alignItems="center" justifyContent="center" borderRightWidth={2} pr={2}>
-            <Ionicons name="body-outline" size={48} color="black" />
-            <Text fontSize="xs" bold>
-              Profile
-            </Text>
+          <Box alignItems="center" bg={"gray.400"} p={2} justifyContent="center" mr={2}>
+            <Image w={30} h={30} source={profileIcon}></Image>
           </Box>
         </Touchable>
       </HStack>
