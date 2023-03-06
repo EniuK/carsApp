@@ -51,8 +51,17 @@ function Article({ item: { title, desc, category } }) {
       <Text numberOfLines={3} fontSize={"lg"} pr={2}>
         {desc}
       </Text>
-      <Text bg={"gray.400"} mt={3} w={20} alignSelf={"flex-end"} mr={3} mb={1}>
-        Read more
+      <Text
+        bg={"gray.400"}
+        mt={3}
+        alignSelf={"flex-end"}
+        justifyContent={"center"}
+        mr={3}
+        mb={1}
+        pl={2}
+        pr={2}
+      >
+        read more
       </Text>
     </VStack>
   )
