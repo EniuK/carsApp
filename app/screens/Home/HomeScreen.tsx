@@ -1,6 +1,6 @@
 import React, { useCallback } from "react"
 import BackHeader from "../../components/BackHeader"
-import { Button, VStack, HStack, Text, Box, View, ScrollView } from "native-base"
+import { Button, VStack, Text, Box, ScrollView } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import RecentNewsFragment from "./RecentNewsFragment"
 import ScreenWrapper from "../../components/ScreenWrapper"
@@ -40,7 +40,14 @@ const HomeScreen = observer(() => {
               </Text>
             </Button>
           </VStack>
-          <Button ml={120} mt={30} mb={50} w="100" h="100" onPress={onModelDetailsPress}>
+          <Button
+            alignSelf={"center"}
+            mt={30}
+            mb={50}
+            w="100"
+            h="100"
+            onPress={onModelDetailsPress}
+          >
             <Text>Model Details</Text>
           </Button>
         </VStack>
