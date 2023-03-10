@@ -1,5 +1,16 @@
 import React, { useState } from "react"
-import { Text, Box, VStack, Image, FlatList, Input, HStack, ArrowBackIcon } from "native-base"
+import {
+  Text,
+  ScrollView,
+  Box,
+  VStack,
+  Image,
+  FlatList,
+  Input,
+  HStack,
+  ArrowBackIcon,
+  View,
+} from "native-base"
 import CardCar from "../../../assets/images/card_car.png"
 import car1 from "../../../assets/images/car1.jpeg"
 import car2 from "../../../assets/images/car2.jpeg"
@@ -23,12 +34,15 @@ const CollectionFragment = () => {
           w="80%"
         />
       </HStack>
-      <Text bold w={100}>
-        All ({filteredCars.length})
-      </Text>
-      <HStack>
-        <FlatList scrollEnabled numColumns={2} data={filteredCars} renderItem={CollectionItem} />
-      </HStack>
+
+      <Box bg={"#EDF0FF"} pl={6} pb={20}>
+        <Text bold w={100}>
+          All ({filteredCars.length})
+        </Text>
+        <HStack bg={"#EDF0FF"}>
+          <FlatList scrollEnabled numColumns={2} data={filteredCars} renderItem={CollectionItem} />
+        </HStack>
+      </Box>
     </VStack>
   )
 }
@@ -60,7 +74,7 @@ const fakeCarCollection = [
 
 function CollectionItem({ item: { src, name } }) {
   return (
-    <Box borderRadius={10} justifyContent={"space-between"} w={"50%"} mb={5}>
+    <Box borderRadius={10} justifyContent={"space-between"} w={"50%"} mb={2}>
       <VStack>
         <Image
           source={src}

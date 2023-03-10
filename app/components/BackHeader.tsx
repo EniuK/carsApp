@@ -27,7 +27,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
     <VStack space="4" h={130}>
       <HStack style={$header}>
         <Box pt={0} ml={2}>
-          <Text fontSize="lg" bold color="black" letterSpacing="xs">
+          <Text fontSize="lg" bold color="white" letterSpacing="xs">
             CarsApp
           </Text>
         </Box>
@@ -40,7 +40,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
             justifyContent="center"
             mr={2}
           >
-            <Image w={30} h={30} source={profileIcon} alt={"profile icon"}></Image>
+            <Image w={30} h={30} source={profileIcon} alt={"profile"}></Image>
           </Box>
         </Touchable>
       </HStack>

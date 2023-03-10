@@ -27,6 +27,7 @@ import HomeScreen from "../screens/Home/HomeScreen"
 import ProfileScreen from "../screens/ProfileScreen"
 import SearchScreen from "../screens/SearchScreen"
 import ModelDetailsScreen from "../screens/ModelDetailsScreen"
+import AddCar from "../screens/AddCar"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import User from "../screens/context/User"
@@ -52,6 +53,7 @@ export type AppStackParamList = {
   SearchScreen: undefined
   ProfileScreen: undefined
   ModelDetailsScreen: undefined
+  AddCar: undefined
 }
 
 /**
@@ -87,6 +89,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="SearchScreen" component={SearchScreen} />
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
+          <Stack.Screen name="AddCar" component={AddCar} />
         </Stack.Group>
       ) : (
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />

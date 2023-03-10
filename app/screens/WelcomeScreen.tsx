@@ -15,9 +15,18 @@ const WelcomeScreen = observer(() => {
   return (
     <ScreenWrapper>
       <View h={"100%"} justifyContent={"center"} alignItems={"center"}>
-        <Text color={"white"}>SIEMANECZKO W APLIKACJI {User.prototype.name}</Text>
-        <Button w="100" h="65" onPress={onWelcomePress}>
-          <Text>Go to HOMEPAGE </Text>
+        <Text bold color={"white"}>
+          DiecastMe
+        </Text>
+        <Button
+          w="100"
+          h="65"
+          variant={"ghost"}
+          borderWidth={2}
+          borderColor={"white"}
+          onPress={onWelcomePress}
+        >
+          <Text>Welcome</Text>
         </Button>
       </View>
     </ScreenWrapper>

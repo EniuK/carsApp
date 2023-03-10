@@ -4,7 +4,7 @@ import car1 from "../../../assets/images/car1.jpeg"
 import car3 from "../../../assets/images/car3.jpeg"
 const FavoritesFragment = () => {
   return (
-    <Box mb={10}>
+    <Box pl={5} mb={10}>
       <Text bold fontSize="2xl" color={"white"} marginBottom={3}>
         Favorites
       </Text>

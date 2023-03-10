@@ -1,14 +1,16 @@
 import React from "react"
-import { Text, Box, VStack, Image, FlatList } from "native-base"
+import { Text, Box, Divider, VStack, Image, FlatList } from "native-base"
 import CardCar from "../../../assets/images/card_car.png"
 import ScreenWrapper from "../../components/ScreenWrapper"
+import LinearGradient from "react-native-linear-gradient"
+
 const RecentNewsFragment = () => {
   return (
-    <VStack space="4">
-      <Text bold fontSize="2xl">
-        Recent News
+    <VStack bg="#EDF0FF" space="4">
+      <Text bold fontSize="2xl" color={"black"}>
+        Articles
       </Text>
-      <FlatList scrollEnabled data={fakeArticles} renderItem={Article} />
+      <FlatList scrollEnabled borderRadius={20} data={fakeArticles} renderItem={Article} />
     </VStack>
   )
 }
@@ -35,10 +37,10 @@ const fakeArticles = [
   },
 ]
 
-function Article({ item: { title, desc } }) {
+function Article({ item: { title, desc, id } }) {
   return (
-    <VStack p={3} mb={5} borderRadius={20} bg="coolGray.300" width={"100%"}>
-      <Box position={"relative"} flex={1}>
+    <VStack p={3} bg="#EDF0FF" width={"100%"}>
+      <Box alignItems={"center"} justifyContent={"center"}>
         <Image source={CardCar} borderRadius={8} alt="big red kitty" />
       </Box>
       <Text bold marginTop={0} marginBottom={3} fontSize="2xl">
@@ -47,18 +49,19 @@ function Article({ item: { title, desc } }) {
       <Text numberOfLines={3} fontSize={"lg"} pr={2}>
         {desc}
       </Text>
-      <Text
-        bg={"gray.400"}
-        mt={3}
-        alignSelf={"flex-end"}
-        justifyContent={"center"}
-        mr={3}
-        mb={1}
-        pl={2}
-        pr={2}
-      >
-        read more
-      </Text>
+      <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>
+        <LinearGradient
+          start={{ x: 0, y: 1 }}
+          end={{ x: 2, y: 0 }}
+          colors={["#06153C", "#2917FC", "#192f6a"]}
+        >
+          <Text pl={6} pr={6} pt={0.5} pb={0.5} color={"white"}>
+            Read more
+          </Text>
+        </LinearGradient>
+      </Box>
+
+      {fakeArticles.length + 1 === id ? null : <Divider mt={4} bg={"gray.400"} />}
     </VStack>
   )
 }

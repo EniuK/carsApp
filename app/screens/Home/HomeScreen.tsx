@@ -1,6 +1,6 @@
 import React, { useCallback } from "react"
 import BackHeader from "../../components/BackHeader"
-import { Button, VStack, Text, Box, ScrollView } from "native-base"
+import { Button, VStack, Text, Box, ScrollView, HStack } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import RecentNewsFragment from "./RecentNewsFragment"
 import ScreenWrapper from "../../components/ScreenWrapper"
@@ -9,10 +9,14 @@ import { AntDesign } from "@expo/vector-icons"
 import { ViewStyle } from "react-native"
 import Touchable from "../../components/Touchable"
 import { spacing } from "../../theme"
+import FeaturedCollections from "./FeaturedCollectionsFragment"
 
 const HomeScreen = observer(() => {
   const navigation = useNavigation()
 
+  const onAddPress = useCallback(() => {
+    navigation.navigate("AddCar")
+  }, [])
   const onCameraPress = useCallback(() => {
     navigation.navigate("CameraScreen")
   }, [])
@@ -32,6 +36,7 @@ const HomeScreen = observer(() => {
 
       <ScrollView>
         <VStack flex={1} flexGrow={1} justifyContent="space-between">
+          <FeaturedCollections />
           <RecentNewsFragment />
           <VStack marginTop={30} alignContent={"center"} alignItems={"center"} space="4">
             <Button w="220" h="65" onPress={onCollectionPress}>
@@ -39,18 +44,26 @@ const HomeScreen = observer(() => {
                 See your collection
               </Text>
             </Button>
+            <HStack>
+              <Button
+                alignSelf={"center"}
+                mt={30}
+                mb={50}
+                w="100"
+                h="100"
+                onPress={onModelDetailsPress}
+                mr={5}
+              >
+                <Text>Model Details</Text>
+              </Button>
+              <Button alignSelf={"center"} mt={30} mb={50} w="100" h="100" onPress={onAddPress}>
+                <Text>Add car</Text>
+              </Button>
+            </HStack>
           </VStack>
-          <Button
-            alignSelf={"center"}
-            mt={30}
-            mb={50}
-            w="100"
-            h="100"
-            onPress={onModelDetailsPress}
-          >
-            <Text>Model Details</Text>
-          </Button>
         </VStack>
+        <Box h={100} />
+        {/* this box is added just to quick fix buttons */}
       </ScrollView>
       <Box style={$bottomBox}>
         <Touchable onPress={onCollectionPress}>
