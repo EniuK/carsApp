@@ -117,7 +117,7 @@ const AddCar = () => {
                   DATE ADDED
                 </Text>
               </Box>
-              <Buttonv2>ADD TO MY COLLECTION</Buttonv2>
+              <Buttonv2 padding={false}>ADD TO MY COLLECTION</Buttonv2>
             </Box>
           </VStack>
         </Box>

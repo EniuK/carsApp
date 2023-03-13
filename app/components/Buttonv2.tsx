@@ -1,8 +1,9 @@
 import LinearGradient from "react-native-linear-gradient"
-import { Box, Button, Text } from "native-base"
+import { Box, Button, stylingProps, Text } from "native-base"
 import React from "react"
+import { ViewStyle } from "react-native"
 
-const Buttonv2 = ({ children }) => {
+const Buttonv2 = ({ children, padding }) => {
   return (
     <LinearGradient
       start={{ x: 0, y: 1 }}
@@ -10,12 +11,17 @@ const Buttonv2 = ({ children }) => {
       colors={["#06153C", "#2917FC", "#192f6a"]}
       borderRadius={5}
     >
-      <Button variant="ghost">
-        <Text color={"white"} bold>
+      <Button variant="ghost" style={padding ? $baseViewStyle : null}>
+        <Text color={"white"} fontSize={13} bold>
           {children}
         </Text>
       </Button>
     </LinearGradient>
   )
+}
+
+const $baseViewStyle: ViewStyle = {
+  paddingTop: 1,
+  paddingBottom: 1,
 }
 export default Buttonv2

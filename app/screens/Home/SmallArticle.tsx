@@ -1,17 +1,12 @@
 import React from "react"
-import { Text, Box, Divider, VStack, Image, FlatList } from "native-base"
-import CardCar from "../../../assets/images/card_car.png"
-import ScreenWrapper from "../../components/ScreenWrapper"
-import LinearGradient from "react-native-linear-gradient"
+import { Text, Box, Divider, VStack, HStack, Image, FlatList } from "native-base"
+import car2 from "../../../assets/images/car2.jpeg"
 import Buttonv2 from "../../components/Buttonv2"
 
-const RecentNewsFragment = () => {
+const SmallArticle = () => {
   return (
-    <VStack bg="#EDF0FF" borderTopRadius={15} space="4">
-      <Text pl={7} bold fontSize="2xl" color={"black"}>
-        Articles
-      </Text>
-      <FlatList scrollEnabled borderRadius={20} data={fakeArticles} renderItem={Article} />
+    <VStack bg="#EDF0FF">
+      <FlatList borderRadius={20} data={fakeArticles} renderItem={Article} />
     </VStack>
   )
 }
@@ -40,23 +35,26 @@ const fakeArticles = [
 
 function Article({ item: { title, desc, id } }) {
   return (
-    <VStack p={3} bg="#EDF0FF" width={"100%"}>
-      <Box alignItems={"center"} justifyContent={"center"}>
-        <Image source={CardCar} borderRadius={8} alt="big red kitty" />
-      </Box>
-      <Text bold marginTop={0} marginBottom={3} ml={4} fontSize="2xl">
-        {title}
-      </Text>
-      <Text numberOfLines={3} ml={4} fontSize={"lg"} pr={2}>
-        {desc}
-      </Text>
-      <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>
+    <Box alignItems={"center"} justifyContent={"space-between"} pr={5}>
+      <HStack bg="#EDF0FF" mb={10}>
+        <Box justifyContent={"center"} pt={20} alignItems={"center"} w={"50%"} h={100} p={2}>
+          <Image source={car2} borderRadius={20} w={150} h={100} alt="big red kitty" />
+        </Box>
+        <VStack w={170} h={115} pt={7}>
+          <Text bold marginTop={0} marginBottom={1} ml={4} fontSize={18}>
+            {title}
+          </Text>
+          <Text numberOfLines={3} ml={4} fontSize={"14"}>
+            {desc}
+          </Text>
+        </VStack>
+      </HStack>
+      <Box alignSelf={"flex-end"} justifyContent={"center"}>
         <Buttonv2 padding={true}>Read more</Buttonv2>
       </Box>
-
-      {fakeArticles.length + 1 === id ? null : <Divider mt={4} bg={"gray.400"} />}
-    </VStack>
+      {fakeArticles.length + 1 === id ? null : <Divider mt={3} ml={10} bg={"gray.400"} />}
+    </Box>
   )
 }
 
-export default RecentNewsFragment
+export default SmallArticle

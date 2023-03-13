@@ -10,6 +10,7 @@ import { ViewStyle } from "react-native"
 import Touchable from "../../components/Touchable"
 import { spacing } from "../../theme"
 import FeaturedCollections from "./FeaturedCollectionsFragment"
+import SmallArticle from "./SmallArticle"
 
 const HomeScreen = observer(() => {
   const navigation = useNavigation()
@@ -38,6 +39,8 @@ const HomeScreen = observer(() => {
         <VStack flex={1} flexGrow={1} justifyContent="space-between">
           <FeaturedCollections />
           <RecentNewsFragment />
+          <SmallArticle />
+
           <VStack marginTop={30} alignContent={"center"} alignItems={"center"} space="4">
             <Button w="220" h="65" onPress={onCollectionPress}>
               <Text fontWeight={"extrabold"} fontSize="lg">
@@ -62,9 +65,11 @@ const HomeScreen = observer(() => {
             </HStack>
           </VStack>
         </VStack>
+
         <Box h={100} />
         {/* this box is added just to quick fix buttons */}
       </ScrollView>
+
       <Box style={$bottomBox}>
         <Touchable onPress={onCollectionPress}>
           <Box style={$bottomButton}>
