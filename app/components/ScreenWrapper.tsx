@@ -9,9 +9,11 @@ const ScreenWrapper = ({ children }) => {
   return (
     <LinearGradient
       style={$container}
-      start={{ x: 0, y: 1 }}
-      end={{ x: 2, y: 0 }}
-      colors={["#06153C", "#2917FC", "#192f6a"]}
+      colors={["#2400FF", "#1A1346", "#09154D", "#2400FF"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      locations={[0.0126, 0.3644, 0.6308, 0.9777]}
+      style={{ flex: 1 }}
     >
       <SafeAreaView style={$container2}>{children}</SafeAreaView>
     </LinearGradient>
