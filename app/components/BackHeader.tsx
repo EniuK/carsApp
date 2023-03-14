@@ -1,9 +1,8 @@
 import React, { useCallback } from "react"
-import { ViewBase, ViewStyle } from "react-native"
+import { ViewStyle } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Text, Box, ChevronLeftIcon, Image, HStack, VStack, View } from "native-base"
 import Touchable from "./Touchable"
-import { Ionicons } from "@expo/vector-icons"
 import { spacing } from "../theme"
 import profileIcon from "../../assets/images/profileIcon.png"
 

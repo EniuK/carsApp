@@ -96,10 +96,11 @@ const HomeScreen = observer(() => {
 
 const $bottomBox: ViewStyle = {
   position: "absolute",
+
   bottom: 0,
   left: 0,
   right: 0,
-  height: 200,
+  height: 100,
   backgroundColor: "#D6D6D6",
 
   flex: 3,

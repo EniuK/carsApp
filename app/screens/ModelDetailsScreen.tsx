@@ -1,16 +1,21 @@
 import { ViewStyle } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-
-import React from "react"
+import Touchable from "../components/Touchable"
+import React, { useCallback } from "react"
 import { Text, Box, VStack, Image, HStack, Divider } from "native-base"
 import BackHeader from "../components/BackHeader"
 import { AntDesign } from "@expo/vector-icons"
 import CardCar from "../../assets/images/card_car.png"
 import LinearGradient from "react-native-linear-gradient"
+import { useNavigation } from "@react-navigation/native"
 
 const ModelDetails = () => {
+  const navigation = useNavigation()
   const colors = ["red", "white"]
   const iconSize = 28
+  const onBack = useCallback(() => {
+    navigation.goBack()
+  }, [])
 
   console.log(colors[0])
   return (
@@ -26,7 +31,9 @@ const ModelDetails = () => {
           <HStack mb={-4}>
             <Box ml={4} width={"30%"} justifyContent={"flex-start"} alignItems={"flex-start"}>
               <Box style={$iconContainer}>
-                <AntDesign name="arrowleft" size={iconSize} color="white" />
+                <Touchable onPress={onBack}>
+                  <AntDesign name="arrowleft" size={iconSize} color="white" />
+                </Touchable>
               </Box>
             </Box>
             <Box w={"70%"} justifyContent={"center"} alignItems={"flex-end"} pr={4}>
