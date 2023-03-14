@@ -58,38 +58,38 @@ const AddCar = () => {
             <Box p={10} pt={5} justifyContent={"center"} pb={20}>
               <Box mt={2} w={"100%"}>
                 <Input type="text" borderWidth={0} pl={0} />
-                <Divider w={"100%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider w={"100%"} bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   MODEL
                 </Text>
               </Box>
               <Box mt={2} w={"100%"}>
                 <Input type="text" borderWidth={0} pl={0} />
-                <Divider w={"100%"} bg={"#CCCCCC"} />
+                <Divider w={"100%"} bg={"#B7B7B7"} />
 
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   BRAND
                 </Text>
               </Box>
 
               <Box mt={2} w={"100%"}>
                 <Input type="text" borderWidth={0} pl={0}></Input>
-                <Divider w={"100%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider w={"100%"} bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   SERIES
                 </Text>
               </Box>
               <Box mt={2}>
                 <Input type="text" borderWidth={0} pl={0}></Input>
-                <Divider w={"25%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider w={"25%"} bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   YEAR
                 </Text>
               </Box>
               <Box mt={2}>
                 <Input type="text" borderWidth={0} pl={0}></Input>
-                <Divider w={"100%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider w={"100%"} bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   ID NUMBER
                 </Text>
               </Box>
@@ -99,21 +99,21 @@ const AddCar = () => {
                   <Box bg={colors[1]} style={$shadow} w={5} h={5} borderRadius={30} />
                   <Box bg={colors[2] + ".600"} style={$shadow} w={5} h={5} borderRadius={30} />
                 </HStack>
-                <Text color={"#CCCCCC"} fontSize={"xs"} mt={1}>
+                <Text color={"#B7B7B7"} fontSize={"xs"} mt={1}>
                   COLORS
                 </Text>
               </Box>
               <Box mt={2}>
                 <Input type="text" borderWidth={0} pl={0}></Input>
-                <Divider bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   NOTES
                 </Text>
               </Box>
               <Box mt={2} mb={5}>
                 <Input type="text" borderWidth={0} pl={0}></Input>
-                <Divider bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
+                <Divider bg={"#B7B7B7"} />
+                <Text color={"#B7B7B7"} fontSize={"xs"}>
                   DATE ADDED
                 </Text>
               </Box>

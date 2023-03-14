@@ -44,10 +44,10 @@ function Article({ item: { title, desc, id } }) {
       <Box alignItems={"center"} justifyContent={"center"}>
         <Image source={CardCar} borderRadius={8} alt="big red kitty" />
       </Box>
-      <Text bold marginTop={0} marginBottom={3} ml={4} fontSize="2xl">
+      <Text bold marginTop={0} marginBottom={3} ml={4} fontSize={18}>
         {title}
       </Text>
-      <Text numberOfLines={3} ml={4} fontSize={"lg"} pr={2}>
+      <Text numberOfLines={3} ml={4} fontSize={14} pr={2}>
         {desc}
       </Text>
       <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>

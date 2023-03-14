@@ -11,7 +11,7 @@ const Buttonv2 = ({ children, padding }) => {
       colors={["#06153C", "#2917FC", "#192f6a"]}
       borderRadius={5}
     >
-      <Button variant="ghost" style={padding ? $baseViewStyle : null}>
+      <Button variant="ghost" style={padding ? $baseViewStyle : $baseViewStyle2}>
         <Text color={"white"} fontSize={13} bold>
           {children}
         </Text>
@@ -23,5 +23,10 @@ const Buttonv2 = ({ children, padding }) => {
 const $baseViewStyle: ViewStyle = {
   paddingTop: 1,
   paddingBottom: 1,
+}
+
+const $baseViewStyle2: ViewStyle = {
+  paddingRight: 2,
+  paddingLeft: 3,
 }
 export default Buttonv2

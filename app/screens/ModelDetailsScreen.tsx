@@ -55,68 +55,78 @@ const ModelDetails = () => {
           <Box justifyContent={"center"} alignItems={"center"}>
             <Image source={CardCar} resizeMode="stretch" w="100%" alt="big red kitty" />
           </Box>
-          <Box mt={3} justifyContent={"center"} alignItems={"center"}>
-            <Text bold fontSize={22}>
-              Citroen
-            </Text>
-          </Box>
-          <Box pl={10} pr={10} justifyContent={"center"}>
-            <Box mt={2} w={"50%"}>
-              <Text>05/03/2023</Text>
-              <Divider w={"60%"} bg={"#CCCCCC"} />
-              <Text color={"#CCCCCC"} fontSize={"xs"}>
-                DATE ADDED
-              </Text>
-            </Box>
-            <HStack w={"50%"}>
-              <Box mt={2} w={40}>
-                <Text bold>MatchBox</Text>
-                <Divider w={"60%"} bg={"#CCCCCC"} />
+          <Box justifyContent={"space-between"} mr={10} ml={10}>
+            <VStack>
+              <Box mt={3} justifyContent={"center"} alignItems={"center"}>
+                <Text bold fontSize={22}>
+                  Citroen
+                </Text>
+              </Box>
+              <Box pl={7} pr={7} justifyContent={"center"}>
+                <Box mt={4} w={"50%"}>
+                  <Text>05/03/2023</Text>
+                  <Divider w={"80%"} bg={"#B7B7B7"} />
+                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    DATE ADDED
+                  </Text>
+                </Box>
+                <HStack w={"50%"}>
+                  <Box mt={4} w={40}>
+                    <Text bold>MatchBox</Text>
+                    <Divider w={"60%"} bg={"#B7B7B7"} />
 
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
-                  BRAND
-                </Text>
-              </Box>
-              <Box mt={2} ml={5} w={"50%"}>
-                <Text bold>2020</Text>
-                <Divider w={"80%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
-                  YEAR
-                </Text>
-              </Box>
-            </HStack>
-            <HStack w={"50%"}>
-              <Box mt={2}>
-                <Text bold>Super Chase</Text>
-                <Divider w={"80%"} bg={"#CCCCCC"} />
-                <Text color={"#CCCCCC"} fontSize={"xs"}>
-                  SERIES
-                </Text>
-              </Box>
-              <Box mt={2} w={20} ml={20}>
-                <HStack space={2}>
-                  <Box bg={colors[0] + ".600"} style={$shadow} w={5} h={5} borderRadius={30} />
-                  <Box bg={colors[1]} style={$shadow} w={5} h={5} borderRadius={30} />
+                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                      BRAND
+                    </Text>
+                  </Box>
+                  <Box mt={4} ml={5} w={"50%"}>
+                    <Text bold>2020</Text>
+                    <Divider w={"80%"} bg={"#B7B7B7"} />
+                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                      YEAR
+                    </Text>
+                  </Box>
                 </HStack>
-                <Text color={"#CCCCCC"} fontSize={"xs"} mt={1}>
-                  COLORS
-                </Text>
+                <HStack w={"50%"}>
+                  <Box mt={4}>
+                    <Text bold>Super Chase</Text>
+                    <Divider w={"80%"} bg={"#B7B7B7"} />
+                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                      SERIES
+                    </Text>
+                  </Box>
+                  <Box mt={4} w={20} ml={24}>
+                    <HStack space={2} justifyContent={"flex-start"} alignItems={"flex-start"}>
+                      <Box bg={colors[0] + ".600"} style={$shadow} w={5} h={5} borderRadius={30} />
+                      <Box bg={colors[1]} style={$shadow} w={5} h={5} borderRadius={30} />
+                    </HStack>
+                    <Text color={"#B7B7B7"} fontSize={"xs"} mt={1}>
+                      COLORS
+                    </Text>
+                  </Box>
+                </HStack>
+                <Box mt={4}>
+                  <Text bold>106</Text>
+                  <Divider w={"25%"} bg={"#B7B7B7"} />
+                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    ID NUMBER
+                  </Text>
+                </Box>
+                <Box mt={4}>
+                  <Text>Just some random words to see how notes would look like.</Text>
+                  <Divider bg={"#B7B7B7"} />
+                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    NOTES
+                  </Text>
+                </Box>
+                <Box mt={5} pb={20}>
+                  {/* added pb just to fill the screen */}
+                  <Text color={"black"} bold>
+                    Delete
+                  </Text>
+                </Box>
               </Box>
-            </HStack>
-            <Box mt={2}>
-              <Text bold>106</Text>
-              <Divider w={"25%"} bg={"#CCCCCC"} />
-              <Text color={"#CCCCCC"} fontSize={"xs"}>
-                ID NUMBER
-              </Text>
-            </Box>
-            <Box mt={2}>
-              <Text>Just some random words to see how notes would look like.</Text>
-              <Divider bg={"#CCCCCC"} />
-              <Text color={"#CCCCCC"} fontSize={"xs"}>
-                NOTES
-              </Text>
-            </Box>
+            </VStack>
           </Box>
         </VStack>
       </Box>
@@ -134,6 +144,7 @@ const $shadow: ViewStyle = {
 
   elevation: 5,
 }
+
 const $container: ViewStyle = {
   paddingBottom: -10,
 }

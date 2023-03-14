@@ -36,7 +36,7 @@ const HomeScreen = observer(() => {
       <BackHeader title="Home" hideHeader />
 
       <ScrollView>
-        <VStack flex={1} flexGrow={1} justifyContent="space-between">
+        <VStack mb={10} flex={1} flexGrow={1} justifyContent="space-between">
           <FeaturedCollections />
           <RecentNewsFragment />
           <SmallArticle />
@@ -66,7 +66,6 @@ const HomeScreen = observer(() => {
           </VStack>
         </VStack>
       </ScrollView>
-
       <Box style={$bottomBox}>
         <Touchable onPress={onCollectionPress}>
           <Box style={$bottomButton}>
@@ -97,7 +96,7 @@ const $bottomBox: ViewStyle = {
   bottom: 0,
   left: 0,
   right: 0,
-  height: 100,
+  height: 150,
   backgroundColor: "#D6D6D6",
 
   flex: 3,
