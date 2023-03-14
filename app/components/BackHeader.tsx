@@ -26,8 +26,8 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
     <VStack space="4" style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
       <HStack style={$header}>
         <Box pt={0} ml={2}>
-          <Text fontSize="lg" bold color="white" letterSpacing="xs">
-            CarsApp
+          <Text fontSize="18" fontWeight={"extrabold"} color="white" letterSpacing="xs">
+            DiecastMe
           </Text>
         </Box>
         <Touchable onPress={onProfilePress}>

@@ -65,9 +65,6 @@ const HomeScreen = observer(() => {
             </HStack>
           </VStack>
         </VStack>
-
-        <Box h={100} />
-        {/* this box is added just to quick fix buttons */}
       </ScrollView>
 
       <Box style={$bottomBox}>
