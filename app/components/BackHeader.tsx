@@ -24,7 +24,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   }, [])
 
   return (
-    <VStack space="4" h={130}>
+    <VStack space="4" style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
       <HStack style={$header}>
         <Box pt={0} ml={2}>
           <Text fontSize="lg" bold color="white" letterSpacing="xs">
@@ -70,6 +70,13 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
 }
 
 export default BackHeader
+
+const $heightOfContainer: ViewStyle = {
+  height: 140,
+}
+const $heightOfContainer2: ViewStyle = {
+  height: 70,
+}
 
 const $logoContainer: ViewStyle = {
   paddingTop: spacing.large,

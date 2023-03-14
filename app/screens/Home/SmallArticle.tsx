@@ -41,10 +41,10 @@ function Article({ item: { title, desc, id } }) {
           <Image source={car2} borderRadius={20} w={150} h={100} alt="big red kitty" />
         </Box>
         <VStack w={170} h={115} pt={7}>
-          <Text bold marginTop={0} marginBottom={1} ml={4} fontSize={18}>
+          <Text bold marginTop={0} marginBottom={1} fontSize={18}>
             {title}
           </Text>
-          <Text numberOfLines={3} ml={4} fontSize={"14"}>
+          <Text numberOfLines={3} fontSize={"14"}>
             {desc}
           </Text>
         </VStack>
