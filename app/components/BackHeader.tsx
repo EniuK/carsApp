@@ -25,7 +25,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   return (
     <VStack space="4" style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
       <HStack style={$header}>
-        <Box pt={0} ml={2}>
+        <Box pt={0} ml={4}>
           <Text fontSize="18" fontWeight={"extrabold"} color="white" letterSpacing="xs">
             DiecastMe
           </Text>

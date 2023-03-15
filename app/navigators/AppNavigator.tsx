@@ -78,7 +78,7 @@ const AppStack = observer(function AppStack() {
 
   // {logged ? "WelcomeScreen" : }
 
-  const authorized = true
+  const authorized = false
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {authorized ? (
@@ -92,7 +92,16 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="AddCar" component={AddCar} />
         </Stack.Group>
       ) : (
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+        <Stack.Group>
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="CameraScreen" component={CameraScreen} />
+          <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
+          <Stack.Screen name="SearchScreen" component={SearchScreen} />
+          <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+          <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
+          <Stack.Screen name="AddCar" component={AddCar} />
+        </Stack.Group>
       )}
     </Stack.Navigator>
   )

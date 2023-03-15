@@ -29,4 +29,6 @@ const $container: ViewStyle = {
 const $container2: ViewStyle = {
   paddingBottom: spacing.huge,
   paddingTop: 10,
+  paddingLeft: 4,
+  paddingRight: 4,
 }
