@@ -1,14 +1,12 @@
 import React from "react"
 import { Text, Box, Divider, VStack, Image, FlatList } from "native-base"
 import CardCar from "../../../assets/images/card_car.png"
-import ScreenWrapper from "../../components/ScreenWrapper"
-import LinearGradient from "react-native-linear-gradient"
 import Buttonv2 from "../../components/Buttonv2"
 
 const RecentNewsFragment = () => {
   return (
     <VStack bg="#EDF0FF" borderTopRadius={15} space="4">
-      <Text pl={7} bold fontSize="2xl" color={"black"}>
+      <Text pl={6} pt={5} bold fontSize={20} color={"black"}>
         Articles
       </Text>
       <FlatList scrollEnabled borderRadius={20} data={fakeArticles} renderItem={Article} />
@@ -40,14 +38,14 @@ const fakeArticles = [
 
 function Article({ item: { title, desc, id } }) {
   return (
-    <VStack p={3} bg="#EDF0FF" width={"100%"}>
+    <VStack pb={3} pl={3} pr={3} bg="#EDF0FF" width={"100%"}>
       <Box alignItems={"center"} justifyContent={"center"}>
         <Image source={CardCar} borderRadius={8} alt="big red kitty" />
       </Box>
-      <Text bold marginTop={0} marginBottom={3} ml={4} fontSize={18}>
+      <Text bold marginTop={0} marginBottom={3} ml={2} fontSize={18}>
         {title}
       </Text>
-      <Text numberOfLines={3} ml={4} fontSize={14} pr={2}>
+      <Text numberOfLines={3} ml={2} fontSize={14} pr={2}>
         {desc}
       </Text>
       <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>

@@ -35,7 +35,7 @@ const HomeScreen = observer(() => {
     <ScreenWrapper>
       <BackHeader title="Home" hideHeader />
 
-      <ScrollView>
+      <ScrollView borderRadius={10}>
         <VStack mb={10} flex={1} flexGrow={1} justifyContent="space-between">
           <FeaturedCollections />
           <RecentNewsFragment />

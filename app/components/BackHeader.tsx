@@ -57,7 +57,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
             <Box p={15} style={$navigationBarChild} />
           )}
           <Box style={[$navigationBarChild, $headerTitle]}>
-            <Text bold fontSize="xl">
+            <Text bold fontSize="xl" color={"white"}>
               {title}
             </Text>
           </Box>
