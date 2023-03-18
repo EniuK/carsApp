@@ -50,7 +50,7 @@ const ModelDetails = () => {
         </SafeAreaView>
       </LinearGradient>
 
-      <Box bg={"#FFFFFF"} pb={5} borderRadius={5}>
+      <Box bg={"#FFFFFF"} pb={5} borderRadius={5} justifyContent="center" alignItems={"center"}>
         <VStack>
           <Box justifyContent={"center"} alignItems={"center"}>
             <Image source={CardCar} resizeMode="stretch" w="100%" alt="big red kitty" />
@@ -65,57 +65,57 @@ const ModelDetails = () => {
               <Box pl={7} pr={7} justifyContent={"center"}>
                 <Box mt={4} w={"50%"}>
                   <Text>05/03/2023</Text>
-                  <Divider w={"80%"} bg={"#B7B7B7"} />
-                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                  <Divider w={"80%"} thickness={2} bg={"#B7B7B7"} />
+                  <Text color={"#B7B7B7"} bold fontSize={"10"}>
                     DATE ADDED
                   </Text>
                 </Box>
-                <HStack w={"50%"}>
+                <HStack justifyContent={"space-between"}>
                   <Box mt={4} w={40}>
                     <Text bold>MatchBox</Text>
-                    <Divider w={"60%"} bg={"#B7B7B7"} />
+                    <Divider w={"60%"} thickness={2} bg={"#B7B7B7"} />
 
-                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    <Text color={"#B7B7B7"} bold fontSize={"10"}>
                       BRAND
                     </Text>
                   </Box>
-                  <Box mt={4} ml={5} w={"50%"}>
+                  <Box mt={4} ml={5} w={"50%"} justifyContent={"center"} alignItems={"center"}>
                     <Text bold>2020</Text>
-                    <Divider w={"80%"} bg={"#B7B7B7"} />
-                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    <Divider w={"30%"} thickness={2} bg={"#B7B7B7"} />
+                    <Text color={"#B7B7B7"} bold fontSize={"10"}>
                       YEAR
                     </Text>
                   </Box>
                 </HStack>
-                <HStack w={"50%"}>
+                <HStack justifyContent={"space-between"}>
                   <Box mt={4}>
                     <Text bold>Super Chase</Text>
-                    <Divider w={"80%"} bg={"#B7B7B7"} />
-                    <Text color={"#B7B7B7"} fontSize={"xs"}>
+                    <Divider w={"80%"} thickness={2} bg={"#B7B7B7"} />
+                    <Text color={"#B7B7B7"} bold fontSize={"10"}>
                       SERIES
                     </Text>
                   </Box>
-                  <Box mt={4} w={20} ml={24}>
+                  <Box mt={4} ml={24} w={"50%"} justifyContent={"center"} alignItems={"center"}>
                     <HStack space={2} justifyContent={"flex-start"} alignItems={"flex-start"}>
                       <Box bg={colors[0] + ".600"} style={$shadow} w={5} h={5} borderRadius={30} />
                       <Box bg={colors[1]} style={$shadow} w={5} h={5} borderRadius={30} />
                     </HStack>
-                    <Text color={"#B7B7B7"} fontSize={"xs"} mt={1}>
+                    <Text color={"#B7B7B7"} bold fontSize={"10"} mt={1}>
                       COLORS
                     </Text>
                   </Box>
                 </HStack>
                 <Box mt={4}>
                   <Text bold>106</Text>
-                  <Divider w={"25%"} bg={"#B7B7B7"} />
-                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                  <Divider w={"25%"} thickness={2} bg={"#B7B7B7"} />
+                  <Text color={"#B7B7B7"} fontSize={"10"} bold>
                     ID NUMBER
                   </Text>
                 </Box>
                 <Box mt={4}>
                   <Text>Just some random words to see how notes would look like.</Text>
-                  <Divider bg={"#B7B7B7"} />
-                  <Text color={"#B7B7B7"} fontSize={"xs"}>
+                  <Divider bg={"#B7B7B7"} thickness={2} />
+                  <Text color={"#B7B7B7"} fontSize={"10"} bold>
                     NOTES
                   </Text>
                 </Box>
