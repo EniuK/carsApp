@@ -1,86 +1,59 @@
-import React, { useState } from "react"
-import {
-  Text,
-  ScrollView,
-  Box,
-  VStack,
-  Image,
-  FlatList,
-  Input,
-  HStack,
-  ArrowBackIcon,
-  View,
-} from "native-base"
-import CardCar from "../../../assets/images/card_car.png"
-import car1 from "../../../assets/images/car1.jpeg"
-import car2 from "../../../assets/images/car2.jpeg"
-import car3 from "../../../assets/images/car3.jpeg"
+import React from "react"
+import { Text, Box, VStack, Image, FlatList, HStack } from "native-base"
+import fakeCarCollection from "../fakeCollection"
 
 const CollectionFragment = () => {
-  const [filter, setFilter] = useState("")
+  // const [filter, setFilter] = useState("")
 
-  const filteredCars = fakeCarCollection.filter((car) => {
-    return car.name.toLowerCase().includes(filter.toLowerCase())
-  })
-
-  return (
-    <VStack space="4">
-      <HStack w="100%">
-        <ArrowBackIcon size="5" mt={2} mr={2} color="emerald.500" />
-        <Input
+  // const filteredCars = fakeCarCollection.filter((car) => {
+  //   return car.name.toLowerCase().includes(filter.toLowerCase())
+  // })
+  // eslint-disable-next-line no-lone-blocks
+  {
+    /* <HStack w="100%">
+        <ArrowBackIcon size="5" mt={2} mr={2} color="emerald.500" /> */
+  }
+  // eslint-disable-next-line no-lone-blocks
+  {
+    /* <Input
           onChangeText={(text) => setFilter(text)}
           size="lg"
           placeholder="search car"
           w="80%"
-        />
-      </HStack>
-
-      <Box bg={"#EDF0FF"} pl={6} pb={20}>
-        <Text bold w={100}>
-          All ({filteredCars.length})
+        /> */
+  }
+  // eslint-disable-next-line no-lone-blocks
+  {
+    /* </HStack> */
+  }
+  return (
+    <VStack space="4" borderTopRadius={5}>
+      <Box bg={"#EDF0FF"} pl={6} pb={20} borderTopRadius={5}>
+        <Text bold fontSize={16} w={100} mt={3} mb={3}>
+          All ({fakeCarCollection.length})
         </Text>
-        <HStack bg={"#EDF0FF"}>
-          <FlatList scrollEnabled numColumns={2} data={filteredCars} renderItem={CollectionItem} />
+        <HStack bg={"#EDF0FF"} justifyContent={"center"} alignItems={"center"}>
+          <FlatList
+            scrollEnabled
+            numColumns={2}
+            data={fakeCarCollection}
+            renderItem={CollectionItem}
+          />
         </HStack>
       </Box>
     </VStack>
   )
 }
-const fakeCarCollection = [
-  {
-    id: 1,
-    src: CardCar,
-    name: "Citroen",
-  },
-  {
-    id: 2,
-
-    src: car1,
-    name: "dodge",
-  },
-  {
-    id: 3,
-
-    src: car2,
-    name: "red something",
-  },
-  {
-    id: 4,
-
-    src: car3,
-    name: "green truck",
-  },
-]
 
 function CollectionItem({ item: { src, name } }) {
   return (
-    <Box borderRadius={10} justifyContent={"space-between"} w={"50%"} mb={2}>
+    <Box borderRadius={10} justifyContent={"center"} alignItems={"center"} mr={5} mb={2}>
       <VStack>
         <Image
           source={src}
-          borderRadius={10}
-          width={150}
-          h={150}
+          borderRadius={5}
+          width={160}
+          h={160}
           alt="big red kitty"
           bg="black"
           pr={0}

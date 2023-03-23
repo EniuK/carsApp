@@ -28,23 +28,30 @@ const favorites = [
     src: car3,
     isFavourite: false,
   },
+  {
+    id: 10,
+    brand: "Hot Wheels",
+    name: "Green truck",
+    src: car3,
+    isFavourite: false,
+  },
 ]
 
 function Item({ item: { brand, name, src } }) {
   return (
-    <VStack mr={10} borderRadius={10} bg="coolGray.300" width={200}>
+    <VStack mr={3} borderRadius={10} bg="coolGray.300" width={160} height={160}>
       <Box position={"relative"} borderRadius={10}>
-        <Image source={src} borderRadius={10} w={300} h={150} alt="big red kitty" />
+        <Image source={src} borderRadius={10} width={160} height={105} alt="big red kitty" />
       </Box>
-      <Text bold marginTop={2} marginLeft={5} fontSize="xl">
+      <Text bold marginTop={1} marginLeft={3} fontSize="xl">
         {brand}
       </Text>
       <Text
-        marginLeft={5}
+        marginLeft={3}
         bold
         paddingRight={5}
         numberOfLines={3}
-        fontSize="xl"
+        fontSize="14"
         mb={2}
         fontFamily="body"
       >
