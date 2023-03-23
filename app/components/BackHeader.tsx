@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 import { Text, Box, ChevronLeftIcon, Image, HStack, VStack, View } from "native-base"
 import Touchable from "./Touchable"
 import { spacing } from "../theme"
-import profileIcon from "../../assets/images/profileIcon.png"
+import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
 
 type BackHeaderProps = {
   title: string
@@ -23,7 +23,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   }, [])
 
   return (
-    <VStack space="4" style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
+    <VStack style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
       <HStack style={$header}>
         <Box pt={0} ml={4}>
           <Text fontSize="18" fontWeight={"extrabold"} color="white" letterSpacing="xs">
@@ -33,31 +33,41 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
         <Touchable onPress={onProfilePress}>
           <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
             <Text color={"white"} fontSize={12}>
-              {"<icon>" + " "}anyname
+              {"<icon>" + " "}anynamelongenough
             </Text>
           </Box>
         </Touchable>
       </HStack>
       {hideHeader ? null : (
-        <HStack style={$navigationBar}>
+        <VStack style={$navigationBar}>
           {navigation.canGoBack() ? (
             <View style={[$navigationBarChild, { alignItems: "flex-start" }]}>
               <Touchable onPress={onBack} hitSlop={$hitSlop}>
-                <Box rounded={25} p={15} bgColor="darkBlue.600">
-                  <ChevronLeftIcon color="white" />
-                </Box>
+                <AntDesign name="arrowleft" size={24} color="white" />
               </Touchable>
             </View>
           ) : (
             <Box p={15} style={$navigationBarChild} />
           )}
           <Box style={[$navigationBarChild, $headerTitle]}>
-            <Text bold fontSize="xl" color={"white"}>
-              {title}
-            </Text>
+            <HStack>
+              <Text pt={2} bold fontSize={18} color={"white"}>
+                {title}
+              </Text>
+              <Box alignItems={"flex-end"} pr={5} flex={1}>
+                <HStack>
+                  <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
+                    <MaterialIcons name="search" size={24} color="white" />
+                  </Box>
+                  <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
+                    <Feather name="plus" size={24} color="white" />
+                  </Box>
+                </HStack>
+              </Box>
+            </HStack>
           </Box>
-          {rightAccessory || <Box p={15} style={$navigationBarChild} />}
-        </HStack>
+          {/* {rightAccessory || <Box p={15} style={$navigationBarChild} />} */}
+        </VStack>
       )}
     </VStack>
   )
@@ -66,18 +76,10 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
 export default BackHeader
 
 const $heightOfContainer: ViewStyle = {
-  height: 140,
+  height: 150,
 }
 const $heightOfContainer2: ViewStyle = {
   height: 70,
-}
-
-const $logoContainer: ViewStyle = {
-  paddingTop: spacing.large,
-}
-const $logo: ViewStyle = {
-  position: "absolute",
-  bottom: spacing.medium,
 }
 
 const $header: ViewStyle = {
@@ -85,18 +87,16 @@ const $header: ViewStyle = {
   justifyContent: "space-between",
 }
 const $navigationBar: ViewStyle = {
-  flex: 1,
-  justifyContent: "space-between",
-  alignItems: "center",
-  paddingTop: spacing.tiny,
-  marginBottom: spacing.medium,
-}
-const $navigationBarChild: ViewStyle = {
+  marginTop: -50,
+  paddingLeft: 18,
   flex: 1,
 }
+const $navigationBarChild: ViewStyle = {}
 
 const $headerTitle: ViewStyle = {
-  alignItems: "center",
+  marginBottom: -50,
+  marginTop: 10,
+  alignItems: "flex-start",
 }
 
 const $hitSlop: ViewStyle = {
