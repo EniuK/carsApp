@@ -31,15 +31,10 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           </Text>
         </Box>
         <Touchable onPress={onProfilePress}>
-          <Box
-            alignItems="center"
-            bg={"gray.400"}
-            borderRadius={5}
-            p={2}
-            justifyContent="center"
-            mr={2}
-          >
-            <Image w={30} h={30} source={profileIcon} alt={"profile"}></Image>
+          <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
+            <Text color={"white"} fontSize={12}>
+              {"<icon>" + " "}anyname
+            </Text>
           </Box>
         </Touchable>
       </HStack>
