@@ -1,13 +1,13 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Text, Box, VStack, Image, FlatList, HStack } from "native-base"
 import fakeCarCollection from "../fakeCollection"
+import { useNavigation } from "@react-navigation/native"
+import Touchable from "../../components/Touchable"
+import { Dimensions } from "react-native"
 
 const CollectionFragment = () => {
-  // const [filter, setFilter] = useState("")
+  const windowWidth = Dimensions.get("window").width
 
-  // const filteredCars = fakeCarCollection.filter((car) => {
-  //   return car.name.toLowerCase().includes(filter.toLowerCase())
-  // })
   // eslint-disable-next-line no-lone-blocks
   {
     /* <HStack w="100%">
@@ -26,6 +26,40 @@ const CollectionFragment = () => {
   {
     /* </HStack> */
   }
+  const navigation = useNavigation()
+
+  const CollectionItem = (item) => {
+    return (
+      <Box
+        borderRadius={10}
+        justifyContent={"center"}
+        alignItems={"center"}
+        mr={4}
+        mb={2}
+        key={item.src}
+      >
+        <VStack>
+          <Touchable
+            onPress={() => {
+              navigation.navigate("ModelDetailsScreen", { items: item.item })
+            }}
+          >
+            <Image
+              source={item.item.src}
+              borderRadius={5}
+              width={160}
+              h={160}
+              alt="big red kitty"
+              bg="black"
+              pr={0}
+              ml={0}
+            />
+          </Touchable>
+          <Text bold>{item.item.name}</Text>
+        </VStack>
+      </Box>
+    )
+  }
   return (
     <VStack space="4" borderTopRadius={5}>
       <Box bg={"#EDF0FF"} pl={6} pb={20} borderTopRadius={5}>
@@ -42,26 +76,6 @@ const CollectionFragment = () => {
         </HStack>
       </Box>
     </VStack>
-  )
-}
-
-function CollectionItem({ item: { src, name } }) {
-  return (
-    <Box borderRadius={10} justifyContent={"center"} alignItems={"center"} mr={5} mb={2}>
-      <VStack>
-        <Image
-          source={src}
-          borderRadius={5}
-          width={160}
-          h={160}
-          alt="big red kitty"
-          bg="black"
-          pr={0}
-          ml={0}
-        />
-        <Text bold>{name}</Text>
-      </VStack>
-    </Box>
   )
 }
 

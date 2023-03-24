@@ -1,9 +1,8 @@
-import React, { useCallback } from "react"
-import { ViewStyle } from "react-native"
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import { ViewStyle, Animated, Dimensions } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import { Text, Box, ChevronLeftIcon, Image, HStack, VStack, View } from "native-base"
+import { Text, Box, Image, HStack, VStack, View, Input } from "native-base"
 import Touchable from "./Touchable"
-import { spacing } from "../theme"
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
 
 type BackHeaderProps = {
@@ -11,10 +10,24 @@ type BackHeaderProps = {
   rightAccessory?: React.ReactNode
   hideHeader?: boolean
 }
+const windowHeight = Dimensions.get("window").height
 
 const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   const navigation = useNavigation()
-
+  const [isVisible, setVisible] = useState(false)
+  const [inputWidth] = useState(new Animated.Value(0))
+  const opacityAnim = useRef(new Animated.Value(1)).current
+  useEffect(() => {
+    Animated.timing(opacityAnim, {
+      toValue: isVisible ? 0 : 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start()
+  }, [isVisible])
+  // add new function to handle search icon press
+  const onSearchPress = useCallback(() => {
+    setVisible(true)
+  }, [])
   const onBack = useCallback(() => {
     navigation.goBack()
   }, [])
@@ -30,13 +43,15 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
             DiecastMe
           </Text>
         </Box>
-        <Touchable onPress={onProfilePress}>
-          <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
-            <Text color={"white"} fontSize={12}>
-              {"<icon>" + " "}anynamelongenough
-            </Text>
-          </Box>
-        </Touchable>
+        {title === "profile" ? null : (
+          <Touchable onPress={onProfilePress}>
+            <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
+              <Text color={"white"} fontSize={12}>
+                {"<icon>" + " "}anynamelongenough
+              </Text>
+            </Box>
+          </Touchable>
+        )}
       </HStack>
       {hideHeader ? null : (
         <VStack style={$navigationBar}>
@@ -51,19 +66,63 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           )}
           <Box style={[$navigationBarChild, $headerTitle]}>
             <HStack>
-              <Text pt={2} bold fontSize={18} color={"white"}>
-                {title}
-              </Text>
-              <Box alignItems={"flex-end"} pr={5} flex={1}>
-                <HStack>
-                  <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
-                    <MaterialIcons name="search" size={24} color="white" />
-                  </Box>
-                  <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
-                    <Feather name="plus" size={24} color="white" />
-                  </Box>
-                </HStack>
-              </Box>
+              <Animated.Text style={{ paddingTop: 6, opacity: opacityAnim }}>
+                <Text fontWeight={"extrabold"} fontSize={18} color={"white"}>
+                  {title}
+                </Text>
+              </Animated.Text>
+              {title === "Add new" ? null : (
+                <Box alignItems={"flex-end"} pr={2} flex={1}>
+                  <HStack>
+                    <HStack bg={"rgba(29, 29, 29, 0.5)"} borderRadius={40}>
+                      <Touchable
+                        onPress={() => {
+                          setVisible(!isVisible)
+                          Animated.timing(inputWidth, {
+                            toValue: isVisible ? 0 : 300, // change the width of the input field
+                            duration: 300, // set the animation duration
+                            useNativeDriver: false,
+                          }).start()
+                        }}
+                      >
+                        <Box
+                          p={2}
+                          bg={"rgba(18, 20, 73, 0.5)"}
+                          style={isVisible ? null : { borderRadius: 20 }}
+                        >
+                          {title === "ModelDetails" ? (
+                            <AntDesign name="edit" size={24} color="white" />
+                          ) : (
+                            <MaterialIcons name="search" size={24} color="white" />
+                          )}
+                        </Box>
+                      </Touchable>
+                    </HStack>
+
+                    <Animated.View style={{ width: inputWidth }}>
+                      {isVisible && (
+                        <Input
+                          marginTop={1.5}
+                          height={8}
+                          color={"white"}
+                          style={{
+                            backgroundColor: "rgba(29, 29, 29, 0.5)",
+                            borderRadius: 40,
+                            outlineWidth: 0,
+                          }}
+                        />
+                      )}
+                    </Animated.View>
+                    <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
+                      {title === "ModelDetails" ? (
+                        <Feather name="star" size={24} color="white" />
+                      ) : (
+                        <Feather name="plus" size={24} color="white" />
+                      )}
+                    </Box>
+                  </HStack>
+                </Box>
+              )}
             </HStack>
           </Box>
           {/* {rightAccessory || <Box p={15} style={$navigationBarChild} />} */}
@@ -76,18 +135,16 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
 export default BackHeader
 
 const $heightOfContainer: ViewStyle = {
-  height: 150,
+  height: windowHeight * 0.14,
 }
 const $heightOfContainer2: ViewStyle = {
-  height: 70,
+  height: windowHeight * 0.06,
 }
 
 const $header: ViewStyle = {
-  flex: 1,
   justifyContent: "space-between",
 }
 const $navigationBar: ViewStyle = {
-  marginTop: -50,
   paddingLeft: 18,
   flex: 1,
 }

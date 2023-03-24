@@ -59,7 +59,7 @@ const HomeScreen = observer(() => {
                 </Text>
               </Box>
             </Touchable>
-            <Touchable onPress={onModelDetailsPress}>
+            <Touchable onPress={onAddPress}>
               <Box style={$bottomButton}>
                 <AntDesign name="pluscircleo" size={36} color="white" />
                 <Text fontSize={10} color="white">
@@ -93,7 +93,7 @@ const $bottomBox: ViewStyle = {
   bottom: 0,
   left: 0,
   right: 0,
-  height: 160,
+  height: 140,
 
   flex: 3,
 }

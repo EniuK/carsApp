@@ -5,8 +5,8 @@ import Buttonv2 from "../../components/Buttonv2"
 
 const RecentNewsFragment = () => {
   return (
-    <VStack bg="#EDF0FF" borderTopRadius={15} space="4">
-      <Text pl={6} pt={5} bold fontSize={20} color={"black"}>
+    <VStack bg="#EDF0FF" borderTopRadius={10} space="4">
+      <Text pl={6} pt={3} bold fontSize={20} color={"black"}>
         Articles
       </Text>
       <FlatList scrollEnabled borderRadius={20} data={fakeArticles} renderItem={Article} />

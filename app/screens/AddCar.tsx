@@ -24,28 +24,7 @@ const AddCar = () => {
         colors={["#06153C", "#2917FC", "#192f6a"]}
       >
         <SafeAreaView>
-          <BackHeader hideHeader title="" />
-
-          <VStack mt={-9} justifyContent={"flex-start"} alignItems={"flex-start"} mb={4}>
-            <Box
-              ml={4}
-              mb={2}
-              width={"30%"}
-              justifyContent={"flex-start"}
-              alignItems={"flex-start"}
-            >
-              <Box style={$iconContainer}>
-                <Touchable onPress={onBack}>
-                  <AntDesign name="arrowleft" size={28} color="white" />
-                </Touchable>
-              </Box>
-            </Box>
-            <Box mb={3} w={"40%"} ml={4} justifyContent={"flex-start"} alignItems={"flex-start"}>
-              <Text bold color={"white"} fontSize={"18"}>
-                Add new
-              </Text>
-            </Box>
-          </VStack>
+          <BackHeader title="Add new" />
         </SafeAreaView>
       </LinearGradient>
 

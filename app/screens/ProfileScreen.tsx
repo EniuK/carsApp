@@ -1,28 +1,33 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Button, Switch, Text, Box, VStack, ArrowBackIcon, HStack } from "native-base"
 import ScreenWrapper from "../components/ScreenWrapper"
 import BackHeader from "../components/BackHeader"
 import User from "./context/User"
-import { observer } from "mobx-react-lite"
+import { useNavigation } from "@react-navigation/native"
+import Touchable from "../components/Touchable"
 
-const ProfileScreen = observer(() => {
+const ProfileScreen = () => {
+  const navigation = useNavigation()
+  const onBack = useCallback(() => {
+    navigation.goBack()
+  }, [])
   return (
     <ScreenWrapper>
-      <BackHeader title="profile" />
+      <BackHeader title="profile" hideHeader />
       <Box bg={"#EDF0FF"} h={"100%"} borderRadius={10}>
         <VStack>
           <HStack mt={5} mb={75} justifyContent={"center"} alignItems={"center"}>
-            <ArrowBackIcon
-              position={"absolute"}
-              left={5}
-              opacity={0.7}
-              size={6}
-              justifyContent={"flex-start"}
-              alignItems={"flex-start"}
-            />
-            <Text fontSize={"xl"} bold color={"#09154D"}>
-              Preferences
-            </Text>
+            <Box zIndex={10} left={5} justifyContent={"flex-start"} alignItems={"center"}>
+              <Touchable onPress={onBack}>
+                <ArrowBackIcon opacity={0.7} size={6} />
+              </Touchable>
+            </Box>
+
+            <Box w={"90%"} mr={5} alignItems={"center"} justifyContent={"center"}>
+              <Text fontSize={"xl"} fontWeight={"extrabold"} color={"#09154D"}>
+                Preferences
+              </Text>
+            </Box>
           </HStack>
           <Box mb={10} justifyContent={"center"} alignItems={"center"}>
             <Text color={"#09154D"} bold>
@@ -50,7 +55,9 @@ const ProfileScreen = observer(() => {
               width={"60%"}
               onPress={() => User.prototype.updateData(" ", " ", false)}
             >
-              <Text color={"#132788"}>WYLOGUJ SIE {User.prototype.name}</Text>
+              <Text color={"#132788"} bold>
+                Log out
+              </Text>
             </Button>
           </Box>
           <Box mt={2} justifyContent={"center"} alignItems={"center"}>
@@ -60,6 +67,6 @@ const ProfileScreen = observer(() => {
       </Box>
     </ScreenWrapper>
   )
-})
+}
 
 export default ProfileScreen
