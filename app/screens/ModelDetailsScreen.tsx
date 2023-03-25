@@ -4,12 +4,15 @@ import React from "react"
 import { Text, Box, VStack, Image, HStack, Divider } from "native-base"
 import BackHeader from "../components/BackHeader"
 import LinearGradient from "react-native-linear-gradient"
+import car3 from "../../assets/images/car3.jpeg"
 
 const ModelDetails = ({ route }) => {
   const { items } = route.params
   const windowWidth = Dimensions.get("window").width
 
   const colors = ["red", "white"]
+
+  const image = items?.src ?? car3
 
   return (
     <Box>
@@ -34,7 +37,7 @@ const ModelDetails = ({ route }) => {
       >
         <VStack>
           <Box justifyContent={"center"} alignItems={"center"} h={250}>
-            <Image w={windowWidth} h={250} source={items.src} alt="big red kitty" />
+            <Image w={windowWidth} h={250} source={image} alt="big red kitty" />
           </Box>
           <Box justifyContent={"space-between"} mr={10} ml={10}>
             <VStack>

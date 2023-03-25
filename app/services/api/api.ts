@@ -17,6 +17,7 @@ import type {
   ApiFeedResponse, // @demo remove-current-line
 } from "./api.types"
 import type { EpisodeSnapshotIn } from "../../models/Episode" // @demo remove-current-line
+import { CollectionWithElements } from "../../types/types"
 
 /**
  * Configuring the apisauce instance.
@@ -82,7 +83,27 @@ export class Api {
     }
   }
   // @demo remove-block-end
+
+  async getUserElements(userId: string): Promise<
+    | {
+        kind: "ok"
+        userElements: CollectionWithElements[]
+      }
+    | GeneralApiProblem
+  > {
+    const response = await this.apisauce.get(`/userElements/${userId}`)
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      userElements: rawData as CollectionWithElements[],
+    }
+  }
 }
 
 // Singleton instance of the API for convenience
-export const api = new Api()
+export const api = new Api({
+  url: "http://localhost:3000",
+  timeout: 5000,
+})
