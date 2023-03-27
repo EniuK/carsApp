@@ -108,7 +108,7 @@ export class Api {
       }
     | GeneralApiProblem
   > {
-    const response = await this.apisauce.get(`/userElements/${userId}`)
+    const response = await this.apisauce.get(`/userCollections/${userId}`)
 
     const rawData = response.data
 
