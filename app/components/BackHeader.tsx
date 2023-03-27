@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ViewStyle, Animated, Dimensions } from "react-native"
+import { ViewStyle, Animated, Dimensions, Keyboard } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Text, Box, Image, HStack, VStack, View, Input } from "native-base"
 import Touchable from "./Touchable"
@@ -17,6 +17,9 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   const [isVisible, setVisible] = useState(false)
   const [inputWidth] = useState(new Animated.Value(0))
   const opacityAnim = useRef(new Animated.Value(1)).current
+  const handleBlur = () => {
+    Keyboard.dismiss()
+  }
   useEffect(() => {
     Animated.timing(opacityAnim, {
       toValue: isVisible ? 0 : 1,
@@ -79,8 +82,11 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
                         {title === "ModelDetails" ? (
                           <Box
                             p={2}
-                            bg={"rgba(18, 20, 73, 0.5)"}
-                            style={isVisible ? null : { borderRadius: 20 }}
+                            style={
+                              isVisible
+                                ? { backgroundColor: "rgba(18, 20, 73, 0.5)" }
+                                : { borderRadius: 20, backgroundColor: "rgba(29, 29, 29, 0.5)" }
+                            }
                           >
                             <AntDesign name="edit" size={24} color="white" />
                           </Box>
@@ -117,6 +123,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
                               height={8}
                               color={"white"}
                               variant="unstyled"
+                              onBlur={handleBlur}
                               style={{
                                 backgroundColor: "rgba(29, 29, 29, 0.5)",
                                 borderRadius: 40,
