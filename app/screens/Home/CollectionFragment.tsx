@@ -1,34 +1,35 @@
-import React, { useCallback } from "react"
-import { Text, Box, VStack, Image, FlatList, HStack } from "native-base"
-import fakeCarCollection from "../fakeCollection"
+import React, { useEffect, useState } from "react"
+import { Text, Box, VStack, Image, HStack, SectionList } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
-import { Dimensions } from "react-native"
+import { api } from "../../services/api"
+import { CollectionWithElements } from "../../types/types"
+import car3 from "../../../assets/images/car3.jpeg"
+
+function getSectionListDataFromUserElements(userElements: CollectionWithElements[]) {
+  return userElements.map((element) => ({
+    title: element.name,
+    data: element.elements,
+  }))
+}
 
 const CollectionFragment = () => {
-  const windowWidth = Dimensions.get("window").width
-
-  // eslint-disable-next-line no-lone-blocks
-  {
-    /* <HStack w="100%">
-        <ArrowBackIcon size="5" mt={2} mr={2} color="emerald.500" /> */
-  }
-  // eslint-disable-next-line no-lone-blocks
-  {
-    /* <Input
-          onChangeText={(text) => setFilter(text)}
-          size="lg"
-          placeholder="search car"
-          w="80%"
-        /> */
-  }
-  // eslint-disable-next-line no-lone-blocks
-  {
-    /* </HStack> */
-  }
   const navigation = useNavigation()
 
-  const CollectionItem = (item) => {
+  const [collection, setCollection] = useState(null)
+
+  useEffect(() => {
+    // pobierz wszystkie elementy usera
+    async function fun() {
+      const data = await api.getUserElements("1679306069692")
+
+      setCollection(getSectionListDataFromUserElements(data.userElements))
+    }
+
+    fun()
+  }, [])
+
+  const CollectionItem = ({ item }) => {
     return (
       <Box
         borderRadius={10}
@@ -36,16 +37,16 @@ const CollectionFragment = () => {
         alignItems={"center"}
         mr={4}
         mb={2}
-        key={item.src}
+        key={item.id}
       >
         <VStack>
           <Touchable
             onPress={() => {
-              navigation.navigate("ModelDetailsScreen", { items: item.item })
+              navigation.navigate("ModelDetailsScreen", { items: item })
             }}
           >
             <Image
-              source={item.item.src}
+              source={car3}
               borderRadius={5}
               width={160}
               h={160}
@@ -55,7 +56,7 @@ const CollectionFragment = () => {
               ml={0}
             />
           </Touchable>
-          <Text bold>{item.item.name}</Text>
+          <Text bold>{item.name}</Text>
         </VStack>
       </Box>
     )
@@ -63,15 +64,16 @@ const CollectionFragment = () => {
   return (
     <VStack space="4" borderTopRadius={5}>
       <Box bg={"#EDF0FF"} pl={6} pb={20} borderTopRadius={5}>
-        <Text bold fontSize={16} w={100} mt={3} mb={3}>
-          All ({fakeCarCollection.length})
-        </Text>
         <HStack bg={"#EDF0FF"} justifyContent={"center"} alignItems={"center"}>
-          <FlatList
+          <SectionList
             scrollEnabled
-            numColumns={2}
-            data={fakeCarCollection}
+            sections={collection ?? []}
             renderItem={CollectionItem}
+            renderSectionHeader={({ section: { title, data } }) => (
+              <Text bold fontSize={16} mt={3} mb={3}>
+                {title} ({data.length})
+              </Text>
+            )}
           />
         </HStack>
       </Box>
