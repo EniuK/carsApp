@@ -3,7 +3,7 @@ import { Box, Button, stylingProps, Text } from "native-base"
 import React from "react"
 import { ViewStyle } from "react-native"
 
-const Buttonv2 = ({ children, padding }) => {
+const Buttonv2 = ({ children, padding, onPress }) => {
   return (
     <LinearGradient
       start={{ x: 0, y: 1 }}
@@ -11,7 +11,7 @@ const Buttonv2 = ({ children, padding }) => {
       colors={["#06153C", "#2917FC", "#192f6a"]}
       borderRadius={5}
     >
-      <Button variant="ghost" style={padding ? $baseViewStyle : $baseViewStyle2}>
+      <Button variant="ghost" onPress={onPress} style={padding ? $baseViewStyle : $baseViewStyle2}>
         <Text color={"white"} fontSize={13} bold>
           {children}
         </Text>

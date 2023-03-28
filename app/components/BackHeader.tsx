@@ -27,12 +27,10 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
     return user
   }
   const [user, setUser] = useState(null)
-  console.log(user)
 
   useEffect(() => {
     async function fun() {
       const data = await api.getUser("1679306069692")
-      console.log(data.user)
 
       setUser(getUserById(data.user))
     }
@@ -70,7 +68,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           <Touchable onPress={onProfilePress}>
             <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
               <Text color={"white"} fontSize={12}>
-                {user[0]?.firstName}
+                {/* {user[0]?.firstName || "ja :D"} */} ja
               </Text>
             </Box>
           </Touchable>

@@ -17,7 +17,7 @@ import type {
   ApiFeedResponse, // @demo remove-current-line
 } from "./api.types"
 import type { EpisodeSnapshotIn } from "../../models/Episode" // @demo remove-current-line
-import { CollectionWithElements } from "../../types/types"
+import { CollectionWithElements, ElementToAdd } from "../../types/types"
 import User from "../../screens/context/User"
 
 /**
@@ -116,6 +116,30 @@ export class Api {
     return {
       kind: "ok",
       user: rawData as User,
+    }
+  }
+
+  async addElement(
+    element: ElementToAdd,
+    id: string,
+  ): Promise<
+    | {
+        kind: "ok"
+        element: ElementToAdd
+      }
+    | GeneralApiProblem
+  > {
+    const el = {
+      ...element,
+      id,
+    }
+    const response = await this.apisauce.post(`/elements`, { ...el })
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      element: rawData as ElementToAdd,
     }
   }
 }
