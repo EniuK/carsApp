@@ -18,6 +18,7 @@ import type {
 } from "./api.types"
 import type { EpisodeSnapshotIn } from "../../models/Episode" // @demo remove-current-line
 import { CollectionWithElements } from "../../types/types"
+import User from "../../screens/context/User"
 
 /**
  * Configuring the apisauce instance.
@@ -101,20 +102,20 @@ export class Api {
     }
   }
 
-  async getUserCollections(userId: string): Promise<
+  async getUser(userId: string): Promise<
     | {
         kind: "ok"
-        userElements: CollectionWithElements[]
+        user: User
       }
     | GeneralApiProblem
   > {
-    const response = await this.apisauce.get(`/userCollections/${userId}`)
+    const response = await this.apisauce.get(`/users/${userId}`)
 
     const rawData = response.data
 
     return {
       kind: "ok",
-      userElements: rawData as CollectionWithElements[],
+      user: rawData as User,
     }
   }
 }

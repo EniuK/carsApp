@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Text, Box, VStack, Image, HStack, SectionList } from "native-base"
+import { Text, Box, VStack, Image, HStack, SectionList, FlatList } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
 import { api } from "../../services/api"
@@ -15,7 +15,6 @@ function getSectionListDataFromUserElements(userElements: CollectionWithElements
 
 const CollectionFragment = () => {
   const navigation = useNavigation()
-
   const [collection, setCollection] = useState(null)
 
   useEffect(() => {
@@ -33,11 +32,13 @@ const CollectionFragment = () => {
     return (
       <Box
         borderRadius={10}
-        justifyContent={"center"}
         alignItems={"center"}
         mr={4}
         mb={2}
-        key={item.id}
+        key={item.title}
+        width="48%"
+        flexDirection="row"
+        justifyContent="space-between"
       >
         <VStack>
           <Touchable
@@ -56,24 +57,21 @@ const CollectionFragment = () => {
               ml={0}
             />
           </Touchable>
-          <Text bold>{item.name}</Text>
+          <Text bold>{item.title}</Text>
         </VStack>
       </Box>
     )
   }
+  // zwrocic z be wszystkie elementy usera bez grupowania
   return (
     <VStack space="4" borderTopRadius={5}>
       <Box bg={"#EDF0FF"} pl={6} pb={20} borderTopRadius={5}>
-        <HStack bg={"#EDF0FF"} justifyContent={"center"} alignItems={"center"}>
-          <SectionList
-            scrollEnabled
-            sections={collection ?? []}
+        <HStack bg={"#EDF0FF"}>
+          <FlatList
+            data={collection ?? []}
             renderItem={CollectionItem}
-            renderSectionHeader={({ section: { title, data } }) => (
-              <Text bold fontSize={16} mt={3} mb={3}>
-                {title} ({data.length})
-              </Text>
-            )}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
           />
         </HStack>
       </Box>

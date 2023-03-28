@@ -4,6 +4,8 @@ import { useNavigation } from "@react-navigation/native"
 import { Text, Box, Image, HStack, VStack, View, Input } from "native-base"
 import Touchable from "./Touchable"
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
+import { api } from "../services/api"
+import { User } from "../types/types"
 
 type BackHeaderProps = {
   title: string
@@ -20,6 +22,24 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
   const handleBlur = () => {
     Keyboard.dismiss()
   }
+
+  function getUserById(user: User) {
+    return user
+  }
+  const [user, setUser] = useState(null)
+  console.log(user)
+
+  useEffect(() => {
+    async function fun() {
+      const data = await api.getUser("1679306069692")
+      console.log(data.user)
+
+      setUser(getUserById(data.user))
+    }
+
+    fun()
+  }, [])
+
   useEffect(() => {
     Animated.timing(opacityAnim, {
       toValue: isVisible ? 0 : 1,
@@ -50,7 +70,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           <Touchable onPress={onProfilePress}>
             <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
               <Text color={"white"} fontSize={12}>
-                {"<icon>" + " "}anynamelongenough
+                {user[0]?.firstName}
               </Text>
             </Box>
           </Touchable>
