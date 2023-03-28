@@ -17,8 +17,23 @@ import CardCar from "../../assets/images/card_car.png"
 import Buttonv2 from "../components/Buttonv2"
 import LinearGradient from "react-native-linear-gradient"
 import { useNavigation } from "@react-navigation/native"
-import { string, number, date, object, array } from "yup"
+import yup, { string, number, date, object, array } from "yup"
 import { api } from "../services/api"
+import { ElementToAdd } from "../types/types"
+
+const ElementSchema = object({
+  carLink: string().url().nullable(),
+  model: string().required(),
+  brand: string().required(),
+  year: number().required().positive().integer(),
+  idNumber: string().required(),
+  series: string().required(),
+  id: string().required(),
+  description: string().required(),
+  collectionId: string().required(),
+  collectionsId: array().required(),
+  dateAdded: date().default(() => new Date()),
+})
 
 const AddCar = () => {
   const colors = ["red", "white", "blue"]
@@ -31,28 +46,14 @@ const AddCar = () => {
     year: "",
     idNumber: "123",
     series: "",
-    id: new Date(),
+    id: Date.now().toString(),
     description: "",
     owneruserid: "1679306069692",
     colors: ["red.100"],
     collectionId: "1679392893809",
     collectionsId: ["1679392893809"],
   }
-  const [element, setElement] = useState<typeof ElementSchema>(initialElement)
-
-  const ElementSchema = object({
-    carLink: string().url().nullable(),
-    model: string().required(),
-    brand: string().required(),
-    year: number().required().positive().integer(),
-    idNumber: string().required(),
-    series: string().required(),
-    id: date().default(() => new Date()),
-    description: string().required(),
-    collectionId: string().required(),
-    collectionsId: array().required(),
-    dateAdded: date().default(() => new Date()),
-  })
+  const [element, setElement] = useState<ElementToAdd>(initialElement)
 
   const onBack = useCallback(() => {
     navigation.goBack()
@@ -64,12 +65,12 @@ const AddCar = () => {
 
   const handleSubmit = async () => {
     try {
-      await ElementSchema.validate(element)
-      async function fun() {
-        await api.addElement(element, "1679306069692")
-      }
+      const walidacja = await ElementSchema.validate(element)
 
-      fun()
+      console.log({ walidacja })
+
+      await api.addElement(element, "1679306069692")
+
       setElement(initialElement)
     } catch (error) {
       console.log(error)
