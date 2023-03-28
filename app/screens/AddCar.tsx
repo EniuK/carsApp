@@ -18,7 +18,6 @@ import Buttonv2 from "../components/Buttonv2"
 import LinearGradient from "react-native-linear-gradient"
 import { useNavigation } from "@react-navigation/native"
 import { string, number, date, object, array } from "yup"
-import Touchable from "../components/Touchable"
 import { api } from "../services/api"
 
 const AddCar = () => {
@@ -50,7 +49,6 @@ const AddCar = () => {
     series: string().required(),
     id: date().default(() => new Date()),
     description: string().required(),
-    owneruserid: string().required(),
     collectionId: string().required(),
     collectionsId: array().required(),
     dateAdded: date().default(() => new Date()),
@@ -65,9 +63,7 @@ const AddCar = () => {
   }
 
   const handleSubmit = async () => {
-    console.log(element)
     try {
-      console.log(element)
       await ElementSchema.validate(element)
       async function fun() {
         await api.addElement(element, "1679306069692")
