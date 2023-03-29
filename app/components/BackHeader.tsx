@@ -93,7 +93,7 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
                     {title}
                   </Text>
                 </Animated.Text>
-                {title === "Add new" ? null : (
+                {title === "Add new" || title === "SingleCollection" ? null : (
                   <Box alignItems={"flex-end"} pr={2} flex={1}>
                     <HStack>
                       <HStack bg={"rgba(29, 29, 29, 0.5)"} borderRadius={40}>

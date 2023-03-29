@@ -168,6 +168,23 @@ export class Api {
       featuredCollections: rawData as CollectionDb[],
     }
   }
+
+  async getFeaturedCollectionElements(collectionId: string): Promise<
+    | {
+        kind: "ok"
+        collectionElements: any
+      }
+    | GeneralApiProblem
+  > {
+    const response = await this.apisauce.get(`/collections/${collectionId}/elements`)
+
+    const rawData = response.data
+    // do poprawienia i dodania typ
+    return {
+      kind: "ok",
+      collectionElements: rawData as any,
+    }
+  }
 }
 
 // Singleton instance of the API for convenience

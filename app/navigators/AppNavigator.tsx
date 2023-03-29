@@ -32,6 +32,7 @@ import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remov
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import User from "../screens/context/User"
 import NewsScreen from "../screens/NewsScreen"
+import SingleCollectionScreen from "../screens/SingleCollectionScreen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -56,6 +57,7 @@ export type AppStackParamList = {
   ModelDetailsScreen: undefined
   AddCar: undefined
   NewsScreen: undefined
+  SingleCollectionScreen: undefined
 }
 
 /**
@@ -93,6 +95,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
           <Stack.Screen name="AddCar" component={AddCar} />
           <Stack.Screen name="NewsScreen" component={NewsScreen} />
+          <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -105,6 +108,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
           <Stack.Screen name="AddCar" component={AddCar} />
           <Stack.Screen name="NewsScreen" component={NewsScreen} />
+          <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
         </Stack.Group>
       )}
     </Stack.Navigator>
