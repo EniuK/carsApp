@@ -63,7 +63,6 @@ const HomeScreen = observer(() => {
   const onModelDetailsPress = useCallback(() => {
     navigation.navigate("ModelDetailsScreen")
   }, [])
-
   return (
     <ScreenWrapper>
       <BackHeader title="Home" hideHeader />
