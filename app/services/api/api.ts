@@ -17,7 +17,7 @@ import type {
   ApiFeedResponse, // @demo remove-current-line
 } from "./api.types"
 import type { EpisodeSnapshotIn } from "../../models/Episode" // @demo remove-current-line
-import { CollectionWithElements, ElementToAdd } from "../../types/types"
+import { CollectionDb, CollectionWithElements, ElementToAdd } from "../../types/types"
 import User from "../../screens/context/User"
 
 /**
@@ -149,6 +149,23 @@ export class Api {
     return {
       kind: "ok",
       element: rawData as ElementToAdd,
+    }
+  }
+
+  async getFeaturedCollections(): Promise<
+    | {
+        kind: "ok"
+        featuredCollections: CollectionDb[]
+      }
+    | GeneralApiProblem
+  > {
+    const response = await this.apisauce.get("/collections/featured")
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      featuredCollections: rawData as CollectionDb[],
     }
   }
 }

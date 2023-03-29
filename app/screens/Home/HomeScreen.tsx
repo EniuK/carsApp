@@ -1,4 +1,4 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import BackHeader from "../../components/BackHeader"
 import { VStack, Text, Box, ScrollView, HStack } from "native-base"
 import { useNavigation } from "@react-navigation/native"
@@ -12,9 +12,41 @@ import { spacing } from "../../theme"
 import FeaturedCollections from "./FeaturedCollectionsFragment"
 import SmallArticle from "./SmallArticle"
 import LinearGradient from "react-native-linear-gradient"
+import { api } from "../../services/api"
+
+export type CollectionDb = Array<{
+  id: string
+  name: string
+  ownerUserId: string
+  featured: boolean
+}>
 
 const HomeScreen = observer(() => {
+  const initialFeaturedCollections = [
+    {
+      id: "123456789",
+      name: "moja kolekcja",
+      ownerUserId: "123",
+      featured: true,
+    },
+    {
+      id: "32131213",
+      name: "moja kolekcja",
+      ownerUserId: "123",
+      featured: true,
+    },
+  ]
   const navigation = useNavigation()
+  const [featuredCollections, setFeaturedCollections] = useState(initialFeaturedCollections)
+  useEffect(() => {
+    async function fun() {
+      const data = await api.getFeaturedCollections()
+
+      setFeaturedCollections(data.featuredCollections)
+    }
+
+    fun()
+  }, [])
 
   const onAddPress = useCallback(() => {
     navigation.navigate("AddCar")
@@ -38,7 +70,7 @@ const HomeScreen = observer(() => {
 
       <ScrollView borderRadius={10} style={$articlesContainer}>
         <VStack mb={10} flex={1} flexGrow={1} justifyContent="space-between">
-          <FeaturedCollections />
+          <FeaturedCollections items={featuredCollections} />
           <RecentNewsFragment />
           <SmallArticle />
         </VStack>
