@@ -70,7 +70,6 @@ const AddCar = () => {
 
       await api.addElement(element, "1679306069692")
 
-      fun()
       setElement(initialElement)
     } catch (error) {
       console.log(error)

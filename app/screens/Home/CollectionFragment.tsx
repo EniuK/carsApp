@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Text, Box, VStack, Image, HStack, SectionList, FlatList } from "native-base"
+import { Text, Box, VStack, Image, HStack, SectionList, FlatList, View } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
 import { api } from "../../services/api"
@@ -27,8 +27,8 @@ const CollectionFragment = () => {
 
     fun()
   }, [])
-
   const CollectionItem = ({ item }) => {
+    let elements = item.data
     return (
       <Box
         borderRadius={10}
@@ -36,42 +36,52 @@ const CollectionFragment = () => {
         mr={4}
         mb={2}
         key={item.title}
-        width="48%"
+        {...(item.data[0] === undefined ? { width: "100%" } : { width: "100%" })}
         flexDirection="row"
         justifyContent="space-between"
       >
         <VStack>
-          <Touchable
-            onPress={() => {
-              navigation.navigate("ModelDetailsScreen", { items: item })
-            }}
-          >
-            <Image
-              source={car3}
-              borderRadius={5}
-              width={160}
-              h={160}
-              alt="big red kitty"
-              bg="black"
-              pr={0}
-              ml={0}
-            />
-          </Touchable>
-          <Text bold>{item.title}</Text>
+          <Text bold fontSize={24}>
+            {item.title}
+          </Text>
+          {item.data[0] === undefined ? null : (
+            <FlatList data={elements ?? []} renderItem={CollectionElements} numColumns={2} />
+          )}
         </VStack>
       </Box>
     )
   }
-  // zwrocic z be wszystkie elementy usera bez grupowania
+
+  const CollectionElements = (elements) => {
+    console.log(elements)
+    return (
+      <Touchable
+        onPress={() => {
+          navigation.navigate("ModelDetailsScreen", { items: elements })
+        }}
+      >
+        <Image
+          source={car3}
+          borderRadius={5}
+          width={160}
+          h={160}
+          alt="big red kitty"
+          bg="black"
+          pr={0}
+          ml={0}
+        />
+        <Text bold>{elements.item.brand}</Text>
+      </Touchable>
+    )
+  }
   return (
     <VStack space="4" borderTopRadius={5}>
       <Box bg={"#EDF0FF"} pl={6} pb={20} borderTopRadius={5}>
         <HStack bg={"#EDF0FF"}>
           <FlatList
-            data={collection ?? []}
+            data={collection}
             renderItem={CollectionItem}
             keyExtractor={(item) => item.id}
-            numColumns={2}
           />
         </HStack>
       </Box>
