@@ -7,30 +7,30 @@ import { useNavigation } from "@react-navigation/native"
 const RecentNewsFragment = () => {
   const navigation = useNavigation()
 
-  function Article({ item: { title, desc, id } }) {
+  function Article({ item }) {
     return (
       <VStack pb={3} pl={3} pr={3} bg="#EDF0FF" width={"100%"}>
         <Box alignItems={"center"} justifyContent={"center"}>
           <Image source={CardCar} borderRadius={8} alt="big red kitty" />
         </Box>
         <Text bold marginTop={0} marginBottom={3} ml={2} fontSize={18}>
-          {title}
+          {item.title}
         </Text>
         <Text numberOfLines={3} ml={2} fontSize={14} pr={2}>
-          {desc}
+          {item.desc}
         </Text>
         <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>
           <Buttonv2
             padding={true}
             onPress={() => {
-              navigation.navigate("NewsScreen", { items: { title, desc, id } })
+              navigation.navigate("NewsScreen", { items: item })
             }}
           >
             Read more
           </Buttonv2>
         </Box>
 
-        {fakeArticles.length + 1 === id ? null : <Divider mt={4} bg={"gray.400"} />}
+        {fakeArticles.length + 1 === item.id ? null : <Divider mt={4} bg={"gray.400"} />}
       </VStack>
     )
   }
