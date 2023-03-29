@@ -85,85 +85,88 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
           ) : (
             <Box p={15} style={$navigationBarChild} />
           )}
-          <Box style={[$navigationBarChild, $headerTitle]}>
-            <HStack>
-              <Animated.Text style={{ paddingTop: 6, opacity: opacityAnim }}>
-                <Text fontWeight={"extrabold"} fontSize={18} color={"white"}>
-                  {title}
-                </Text>
-              </Animated.Text>
-              {title === "Add new" ? null : (
-                <Box alignItems={"flex-end"} pr={2} flex={1}>
-                  <HStack>
-                    <HStack bg={"rgba(29, 29, 29, 0.5)"} borderRadius={40}>
-                      <HStack>
-                        {title === "ModelDetails" ? (
-                          <Box
-                            p={2}
-                            style={
-                              isVisible
-                                ? { backgroundColor: "rgba(18, 20, 73, 0.5)" }
-                                : { borderRadius: 20, backgroundColor: "rgba(29, 29, 29, 0.5)" }
-                            }
-                          >
-                            <AntDesign name="edit" size={24} color="white" />
-                          </Box>
-                        ) : (
-                          <Touchable
-                            onPress={() => {
-                              setVisible(!isVisible)
-                              Animated.timing(inputWidth, {
-                                toValue: isVisible ? 0 : 300, // change the width of the input field
-                                duration: 300, // set the animation duration
-                                useNativeDriver: false,
-                              }).start()
-                            }}
-                          >
+          {title === "NewsScreen" ? null : (
+            <Box style={[$navigationBarChild, $headerTitle]}>
+              <HStack>
+                <Animated.Text style={{ paddingTop: 6, opacity: opacityAnim }}>
+                  <Text fontWeight={"extrabold"} fontSize={18} color={"white"}>
+                    {title}
+                  </Text>
+                </Animated.Text>
+                {title === "Add new" ? null : (
+                  <Box alignItems={"flex-end"} pr={2} flex={1}>
+                    <HStack>
+                      <HStack bg={"rgba(29, 29, 29, 0.5)"} borderRadius={40}>
+                        <HStack>
+                          {title === "ModelDetails" ? (
                             <Box
                               p={2}
-                              bg={"rgba(18, 20, 73, 0.5)"}
-                              style={isVisible ? null : { borderRadius: 20 }}
+                              style={
+                                isVisible
+                                  ? { backgroundColor: "rgba(18, 20, 73, 0.5)" }
+                                  : { borderRadius: 20, backgroundColor: "rgba(29, 29, 29, 0.5)" }
+                              }
                             >
-                              {title === "ModelDetails" ? (
-                                <AntDesign name="edit" size={24} color="white" />
-                              ) : (
-                                <MaterialIcons name="search" size={24} color="white" />
-                              )}
+                              <AntDesign name="edit" size={24} color="white" />
                             </Box>
-                          </Touchable>
+                          ) : (
+                            <Touchable
+                              onPress={() => {
+                                setVisible(!isVisible)
+                                Animated.timing(inputWidth, {
+                                  toValue: isVisible ? 0 : 300, // change the width of the input field
+                                  duration: 300, // set the animation duration
+                                  useNativeDriver: false,
+                                }).start()
+                              }}
+                            >
+                              <Box
+                                p={2}
+                                bg={"rgba(18, 20, 73, 0.5)"}
+                                style={isVisible ? null : { borderRadius: 20 }}
+                              >
+                                {title === "ModelDetails" ? (
+                                  <AntDesign name="edit" size={24} color="white" />
+                                ) : (
+                                  <MaterialIcons name="search" size={24} color="white" />
+                                )}
+                              </Box>
+                            </Touchable>
+                          )}
+                        </HStack>
+                        {title === "ModelDetails" ? null : (
+                          <Animated.View style={{ width: inputWidth }}>
+                            {isVisible && (
+                              <Input
+                                marginTop={1.5}
+                                height={8}
+                                color={"white"}
+                                variant="unstyled"
+                                onBlur={handleBlur}
+                                style={{
+                                  backgroundColor: "rgba(29, 29, 29, 0.5)",
+                                  borderRadius: 40,
+                                }}
+                              />
+                            )}
+                          </Animated.View>
                         )}
                       </HStack>
-                      {title === "ModelDetails" ? null : (
-                        <Animated.View style={{ width: inputWidth }}>
-                          {isVisible && (
-                            <Input
-                              marginTop={1.5}
-                              height={8}
-                              color={"white"}
-                              variant="unstyled"
-                              onBlur={handleBlur}
-                              style={{
-                                backgroundColor: "rgba(29, 29, 29, 0.5)",
-                                borderRadius: 40,
-                              }}
-                            />
-                          )}
-                        </Animated.View>
-                      )}
-                    </HStack>
 
-                    <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
-                      {title === "ModelDetails" ? (
-                        <Feather name="star" size={24} color="white" />
-                      ) : (
-                        <Feather name="plus" size={24} color="white" />
-                      )}
-                    </Box>
-                  </HStack>
-                </Box>
-              )}
-            </HStack>
-          </Box>
+                      <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
+                        {title === "ModelDetails" ? (
+                          <Feather name="star" size={24} color="white" />
+                        ) : (
+                          <Feather name="plus" size={24} color="white" />
+                        )}
+                      </Box>
+                    </HStack>
+                  </Box>
+                )}
+              </HStack>
+            </Box>
+          )}
+
           {/* {rightAccessory || <Box p={15} style={$navigationBarChild} />} */}
         </VStack>
       )}

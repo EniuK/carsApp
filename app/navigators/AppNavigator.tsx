@@ -31,6 +31,7 @@ import AddCar from "../screens/AddCar"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import User from "../screens/context/User"
+import NewsScreen from "../screens/NewsScreen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -54,6 +55,7 @@ export type AppStackParamList = {
   ProfileScreen: undefined
   ModelDetailsScreen: undefined
   AddCar: undefined
+  NewsScreen: undefined
 }
 
 /**
@@ -90,6 +92,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
           <Stack.Screen name="AddCar" component={AddCar} />
+          <Stack.Screen name="NewsScreen" component={NewsScreen} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -101,6 +104,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="ModelDetailsScreen" component={ModelDetailsScreen} />
           <Stack.Screen name="AddCar" component={AddCar} />
+          <Stack.Screen name="NewsScreen" component={NewsScreen} />
         </Stack.Group>
       )}
     </Stack.Navigator>

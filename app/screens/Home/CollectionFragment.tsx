@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Text, Box, VStack, Image, HStack, SectionList, FlatList, View } from "native-base"
+import { Text, Box, VStack, Image, HStack, FlatList } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
 import { api } from "../../services/api"
