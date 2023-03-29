@@ -131,11 +131,18 @@ export class Api {
   > {
     const el = {
       ...element,
-      owneruserid: id,
     }
 
     console.log({ ...el })
-    const response = await this.apisauce.post(`/elements`, { ...el })
+    const response = await this.apisauce.post(
+      `/elements`,
+      { ...el },
+      {
+        headers: {
+          owneruserid: id,
+        },
+      },
+    )
 
     const rawData = response.data
 

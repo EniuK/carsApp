@@ -10,7 +10,7 @@ export type CollectionWithElements = CollectionDb & {
 }
 
 export type ElementToAdd = {
-  carLink: URL
+  carLink: string
   model: string
   brand: string
   year: string
@@ -19,10 +19,10 @@ export type ElementToAdd = {
   id: string
   description: string
   owneruserid: string
-  colors: [string]
+  colors: string[]
 
   collectionId: string
-  collectionsId: [string]
+  collectionsId: string[]
 }
 
 export type User = {
