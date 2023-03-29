@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { ViewStyle, Animated, Dimensions, Keyboard } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import { Text, Box, Image, HStack, VStack, View, Input } from "native-base"
+import { Text, Box, HStack, VStack, View, Input } from "native-base"
 import Touchable from "./Touchable"
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
 import { api } from "../services/api"
@@ -14,7 +14,7 @@ type BackHeaderProps = {
 }
 const windowHeight = Dimensions.get("window").height
 
-const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
+const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
   const navigation = useNavigation()
   const [isVisible, setVisible] = useState(false)
   const [inputWidth] = useState(new Animated.Value(0))
@@ -68,7 +68,7 @@ const BackHeader = ({ title, rightAccessory, hideHeader }: BackHeaderProps) => {
           <Touchable onPress={onProfilePress}>
             <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
               <Text color={"white"} fontSize={12}>
-                {/* {user[0]?.firstName || "ja :D"} */} ja
+                {/* {user[0]?.firstName || "ja :D"} */} ja :D
               </Text>
             </Box>
           </Touchable>

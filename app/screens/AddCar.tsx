@@ -1,5 +1,5 @@
 import { SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform } from "react-native"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useState } from "react"
 import {
   Text,
   Box,
@@ -10,7 +10,6 @@ import {
   Divider,
   Input,
   FormControl,
-  Button,
 } from "native-base"
 import BackHeader from "../components/BackHeader"
 import CardCar from "../../assets/images/card_car.png"
@@ -65,11 +64,9 @@ const AddCar = () => {
   const handleSubmit = async () => {
     try {
       await ElementSchema.validate(element)
-      async function fun() {
-        await api.addElement(element, "1679306069692")
-      }
 
-      fun()
+      await api.addElement(element, "1679306069692")
+
       setElement(initialElement)
     } catch (error) {
       console.log(error)
@@ -184,7 +181,6 @@ const AddCar = () => {
                   </Box>
                 </FormControl>
                 <FormControl>
-                  {/* co to znaczy id number? */}
                   <Box mt={2}>
                     <Input type="text" borderWidth={0} pl={0}></Input>
                     <Divider w={"100%"} bg={"#B7B7B7"} />
