@@ -1,14 +1,14 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { Text, Box, VStack, Image, FlatList } from "native-base"
 import CardCar from "../../../assets/images/card_car.png"
 import LinearGradient from "react-native-linear-gradient"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
+import { api } from "../../services/api"
 
 const FeaturedCollections = (items: any) => {
-  const navigation = useNavigation()
-
   const featuredColl = items.items
+  const navigation = useNavigation()
 
   return (
     <VStack mb={2}>

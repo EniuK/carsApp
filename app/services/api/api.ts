@@ -177,7 +177,6 @@ export class Api {
     | GeneralApiProblem
   > {
     const response = await this.apisauce.get(`/collections/${collectionId}/elements`)
-
     const rawData = response.data
     // do poprawienia i dodania typ
     return {
