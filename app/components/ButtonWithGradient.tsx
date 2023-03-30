@@ -3,7 +3,7 @@ import { Box, Button, stylingProps, Text } from "native-base"
 import React from "react"
 import { ViewStyle } from "react-native"
 
-const Buttonv2 = ({ children, padding, onPress }) => {
+const ButtonWithGradient = ({ children, padding, onPress }) => {
   return (
     <LinearGradient
       start={{ x: 0, y: 1 }}
@@ -29,4 +29,4 @@ const $baseViewStyle2: ViewStyle = {
   paddingRight: 2,
   paddingLeft: 3,
 }
-export default Buttonv2
+export default ButtonWithGradient

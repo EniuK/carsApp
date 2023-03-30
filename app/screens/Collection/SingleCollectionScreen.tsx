@@ -1,11 +1,11 @@
 import { FlatList, Text, View, Image, ScrollView, Box } from "native-base"
 import React, { useEffect, useState } from "react"
-import BackHeader from "../components/BackHeader"
-import ScreenWrapper from "../components/ScreenWrapper"
-import { api } from "../services/api"
+import BackHeader from "../../components/BackHeader"
+import ScreenWrapper from "../../components/ScreenWrapper"
+import { api } from "../../services/api"
 import CardCar from "../../assets/images/card_car.png"
 import { Dimensions } from "react-native"
-import Touchable from "../components/Touchable"
+import Touchable from "../../components/Touchable"
 import { useNavigation } from "@react-navigation/native"
 
 const SingleCollectionScreen = ({ route }) => {

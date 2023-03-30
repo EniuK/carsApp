@@ -1,4 +1,4 @@
-export * from "./WelcomeScreen"
+export * from "./Profile/WelcomeScreen"
 // @demo remove-block-start
 export * from "./LoginScreen"
 export * from "./DemoCommunityScreen"

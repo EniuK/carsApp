@@ -2,7 +2,7 @@ import { ViewStyle, Dimensions } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import React from "react"
 import { Text, Box, VStack, Image, HStack, Divider } from "native-base"
-import BackHeader from "../components/BackHeader"
+import BackHeader from "../../components/BackHeader"
 import LinearGradient from "react-native-linear-gradient"
 import car3 from "../../assets/images/car3.jpeg"
 

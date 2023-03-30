@@ -1,8 +1,8 @@
 import { ViewStyle } from "react-native"
 import React from "react"
-import BackHeader from "../components/BackHeader"
-import { Screen } from "../components"
-import { spacing } from "../theme"
+import BackHeader from "../../components/BackHeader"
+import { Screen } from "../../components"
+import { spacing } from "../../theme"
 
 const CameraScreen = () => {
   return (

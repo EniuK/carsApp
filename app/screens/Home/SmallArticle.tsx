@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, Box, Divider, VStack, HStack, Image, FlatList } from "native-base"
 import car2 from "../../../assets/images/car2.jpeg"
-import Buttonv2 from "../../components/Buttonv2"
+import Buttonv2 from "../../components/ButtonWithGradient"
 
 const SmallArticle = () => {
   return (

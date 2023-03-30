@@ -1,8 +1,8 @@
 import React from "react"
-import BackHeader from "../components/BackHeader"
-import CollectionFragment from "./Home/CollectionFragment"
-import FavoritesFragment from "./Home/FavoritesFragment"
-import ScreenWrapper from "../components/ScreenWrapper"
+import BackHeader from "../../components/BackHeader"
+import CollectionFragment from "../Home/CollectionFragment"
+import FavoritesFragment from "../Home/FavoritesFragment"
+import ScreenWrapper from "../../components/ScreenWrapper"
 import { ScrollView } from "native-base"
 
 import { SafeAreaView } from "react-native"

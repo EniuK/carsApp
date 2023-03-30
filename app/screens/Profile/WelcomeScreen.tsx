@@ -1,8 +1,8 @@
 import { Button, VStack, HStack, Text, Box, View, ScrollView } from "native-base"
-import User from "./context/User"
+import User from "../context/User"
 import React, { useCallback, useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import ScreenWrapper from "../components/ScreenWrapper"
+import ScreenWrapper from "../../components/ScreenWrapper"
 import { observer } from "mobx-react-lite"
 
 const WelcomeScreen = observer(() => {

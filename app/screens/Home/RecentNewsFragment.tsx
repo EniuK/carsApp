@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, Box, Divider, VStack, Image, FlatList } from "native-base"
 import CardCar from "../../../assets/images/card_car.png"
-import Buttonv2 from "../../components/Buttonv2"
+import Buttonv2 from "../../components/ButtonWithGradient"
 import { useNavigation } from "@react-navigation/native"
 
 const RecentNewsFragment = () => {

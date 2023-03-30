@@ -11,14 +11,14 @@ import {
   Input,
   FormControl,
 } from "native-base"
-import BackHeader from "../components/BackHeader"
+import BackHeader from "../../components/BackHeader"
 import CardCar from "../../assets/images/card_car.png"
-import Buttonv2 from "../components/Buttonv2"
+import Buttonv2 from "../../components/ButtonWithGradient"
 import LinearGradient from "react-native-linear-gradient"
 import { useNavigation } from "@react-navigation/native"
 import yup, { string, number, date, object, array } from "yup"
-import { api } from "../services/api"
-import { ElementToAdd } from "../types/types"
+import { api } from "../../services/api"
+import { ElementToAdd } from "../../types/types"
 
 const ElementSchema = object({
   carLink: string().url().nullable(),

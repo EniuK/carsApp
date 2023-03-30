@@ -20,19 +20,19 @@ import { useStores } from "../models" // @demo remove-current-line
 import {
   LoginScreen, // @demo remove-current-line
 } from "../screens"
-import WelcomeScreen from "../screens/WelcomeScreen"
-import CameraScreen from "../screens/CameraScreen"
-import CollectionScreen from "../screens/CollectionScreen"
+import WelcomeScreen from "../screens/Profile/WelcomeScreen"
+import CameraScreen from "../screens/AddToCollection/CameraScreen"
+import CollectionScreen from "../screens/Collection/CollectionScreen"
 import HomeScreen from "../screens/Home/HomeScreen"
-import ProfileScreen from "../screens/ProfileScreen"
+import ProfileScreen from "../screens/Profile/ProfileScreen"
 import SearchScreen from "../screens/SearchScreen"
-import ModelDetailsScreen from "../screens/ModelDetailsScreen"
-import AddCar from "../screens/AddCar"
+import ModelDetailsScreen from "../screens/Collection/ModelDetailsScreen"
+import AddCar from "../screens/AddToCollection/AddCar"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import User from "../screens/context/User"
-import NewsScreen from "../screens/NewsScreen"
-import SingleCollectionScreen from "../screens/SingleCollectionScreen"
+import NewsScreen from "../screens/Home/NewsScreen"
+import SingleCollectionScreen from "../screens/Collection/SingleCollectionScreen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator

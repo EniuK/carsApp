@@ -18,7 +18,6 @@ const CollectionFragment = () => {
   const [collection, setCollection] = useState(null)
 
   useEffect(() => {
-    // pobierz wszystkie elementy usera
     async function fun() {
       const data = await api.getUserElements("1679306069692")
 
@@ -53,7 +52,6 @@ const CollectionFragment = () => {
   }
 
   const CollectionElements = (elements) => {
-    console.log(elements)
     return (
       <Touchable
         onPress={() => {

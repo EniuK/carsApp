@@ -1,10 +1,10 @@
 import React, { useCallback } from "react"
 import { Button, Switch, Text, Box, VStack, ArrowBackIcon, HStack } from "native-base"
-import ScreenWrapper from "../components/ScreenWrapper"
-import BackHeader from "../components/BackHeader"
-import User from "./context/User"
+import ScreenWrapper from "../../components/ScreenWrapper"
+import BackHeader from "../../components/BackHeader"
+import User from "../context/User"
 import { useNavigation } from "@react-navigation/native"
-import Touchable from "../components/Touchable"
+import Touchable from "../../components/Touchable"
 
 const ProfileScreen = () => {
   const navigation = useNavigation()
