@@ -4,14 +4,13 @@ import App from "./app/app.tsx"
 import React, { useEffect } from "react"
 import { registerRootComponent } from "expo"
 import * as SplashScreen from "expo-splash-screen"
-useEffect(()=>{
+useEffect(() => {
   SplashScreen.preventAutoHideAsync()
-
-},[])
+}, [])
 
 function IgniteApp() {
-  return <App hideSplashScreen={SplashScreen.hideAsync}/>
+  return <App hideSplashScreen={SplashScreen.hideAsync} />
 }
-
+// czemu zwracany jest komponent przyciągnięty tutaj a nie igniteapp?
 registerRootComponent(IgniteApp)
-export default IgniteApp
+export default App
