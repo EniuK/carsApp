@@ -14,6 +14,7 @@ import React, { useCallback, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import { MaterialIcons } from "@expo/vector-icons"
+import ButtonWithGradient from "../../components/ButtonWithGradient"
 
 const CreateUser = () => {
   const navigation = useNavigation()
@@ -91,7 +92,7 @@ const CreateUser = () => {
               </Box>
             </FormControl>
             <FormControl>
-              <Box mt={2} w={"100%"}>
+              <Box mt={2} mb={10} w={"100%"}>
                 <Input
                   w={"90%"}
                   borderWidth={0}
@@ -115,22 +116,9 @@ const CreateUser = () => {
               </Box>
             </FormControl>
 
-            <Button
-              h="60"
-              mt={10}
-              variant={"ghost"}
-              borderWidth={2}
-              borderColor={"black"}
-              justifyContent={"center"}
-              alignItems={"center"}
-              onPress={onCreateAccountPress}
-              pl={5}
-              pr={5}
-            >
-              <Text color={"black"} bold fontWeight={"extrabold"} fontSize={22}>
-                E-mail/Phone number
-              </Text>
-            </Button>
+            <ButtonWithGradient padding={false} onPress={onCreateAccountPress}>
+              Create the account
+            </ButtonWithGradient>
           </Box>
         </Box>
       </View>
