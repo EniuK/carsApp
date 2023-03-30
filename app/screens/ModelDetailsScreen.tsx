@@ -9,7 +9,6 @@ import car3 from "../../assets/images/car3.jpeg"
 const ModelDetails = ({ route }) => {
   const { items } = route.params
   const windowWidth = Dimensions.get("window").width
-
   const colors = ["red", "white"]
 
   const image = items?.src ?? car3
@@ -43,12 +42,12 @@ const ModelDetails = ({ route }) => {
             <VStack>
               <Box mt={3} justifyContent={"center"} alignItems={"center"}>
                 <Text bold fontSize={22}>
-                  {items.name}
+                  {items.item.name}
                 </Text>
               </Box>
               <Box pl={7} pr={7} justifyContent={"center"}>
                 <Box mt={4} w={"50%"}>
-                  <Text>{items.year}</Text>
+                  <Text>{items.item.year}</Text>
                   <Divider w={"80%"} thickness={2} bg={"#B7B7B7"} />
                   <Text color={"#B7B7B7"} bold fontSize={"10"}>
                     DATE ADDED
@@ -56,7 +55,7 @@ const ModelDetails = ({ route }) => {
                 </Box>
                 <HStack justifyContent={"space-between"}>
                   <Box mt={4} w={40}>
-                    <Text bold>{items.name}</Text>
+                    <Text bold>{items.item.brand}</Text>
                     <Divider w={"60%"} thickness={2} bg={"#B7B7B7"} />
 
                     <Text color={"#B7B7B7"} bold fontSize={"10"}>
@@ -64,7 +63,7 @@ const ModelDetails = ({ route }) => {
                     </Text>
                   </Box>
                   <Box mt={4} ml={5} w={"50%"} justifyContent={"center"} alignItems={"center"}>
-                    <Text bold>{items.year}</Text>
+                    <Text bold>{items.item.year}</Text>
                     <Divider w={"30%"} thickness={2} bg={"#B7B7B7"} />
                     <Text color={"#B7B7B7"} bold fontSize={"10"}>
                       YEAR
@@ -73,7 +72,7 @@ const ModelDetails = ({ route }) => {
                 </HStack>
                 <HStack justifyContent={"space-between"}>
                   <Box mt={4}>
-                    <Text bold>{items.name}</Text>
+                    <Text bold>{items.item.name}</Text>
                     <Divider w={"80%"} thickness={2} bg={"#B7B7B7"} />
                     <Text color={"#B7B7B7"} bold fontSize={"10"}>
                       SERIES
@@ -90,14 +89,14 @@ const ModelDetails = ({ route }) => {
                   </Box>
                 </HStack>
                 <Box mt={4}>
-                  <Text bold>{items.id}</Text>
+                  <Text bold>{items.item.id}</Text>
                   <Divider w={"25%"} thickness={2} bg={"#B7B7B7"} />
                   <Text color={"#B7B7B7"} fontSize={"10"} bold>
                     ID NUMBER
                   </Text>
                 </Box>
                 <Box mt={4}>
-                  <Text>{items.name}</Text>
+                  <Text>{items.item.name}</Text>
                   <Divider bg={"#B7B7B7"} thickness={2} />
                   <Text color={"#B7B7B7"} fontSize={"10"} bold>
                     NOTES
