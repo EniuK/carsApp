@@ -12,4 +12,4 @@ function IgniteApp() {
 }
 
 AppRegistry.registerComponent("carsApp", () => IgniteApp)
-export default App
+export default IgniteApp

@@ -12,7 +12,7 @@ import {
   FormControl,
 } from "native-base"
 import BackHeader from "../../components/BackHeader"
-import CardCar from "../../assets/images/card_car.png"
+import CardCar from "../../../assets/images/card_car.png"
 import Buttonv2 from "../../components/ButtonWithGradient"
 import LinearGradient from "react-native-linear-gradient"
 import { useNavigation } from "@react-navigation/native"

@@ -3,7 +3,7 @@ import React from "react"
 import { ViewStyle } from "react-native"
 import BackHeader from "../../components/BackHeader"
 import ScreenWrapper from "../../components/ScreenWrapper"
-import CardCar from "../../assets/images/card_car.png"
+import CardCar from "../../../assets/images/card_car.png"
 
 const NewsScreen = ({ route }) => {
   const { items } = route.params
