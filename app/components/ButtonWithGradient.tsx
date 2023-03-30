@@ -1,5 +1,5 @@
 import LinearGradient from "react-native-linear-gradient"
-import { Box, Button, stylingProps, Text } from "native-base"
+import { Button, Text } from "native-base"
 import React from "react"
 import { ViewStyle } from "react-native"
 

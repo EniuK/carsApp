@@ -8,18 +8,18 @@ import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
-  NavigatorScreenParams, // @demo remove-current-line
+  // NavigatorScreenParams, // @demo remove-current-line
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { useState } from "react"
+import React from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
-import { useStores } from "../models" // @demo remove-current-line
-import {
-  LoginScreen, // @demo remove-current-line
-} from "../screens"
+// import { useStores } from "../models" // @demo remove-current-line
+// import {
+//   LoginScreen, // @demo remove-current-line
+// } from "../screens"
 import WelcomeScreen from "../screens/Profile/WelcomeScreen"
 import CameraScreen from "../screens/AddToCollection/CameraScreen"
 import CollectionScreen from "../screens/Collection/CollectionScreen"
@@ -28,11 +28,13 @@ import ProfileScreen from "../screens/Profile/ProfileScreen"
 import SearchScreen from "../screens/SearchScreen"
 import ModelDetailsScreen from "../screens/Collection/ModelDetailsScreen"
 import AddCar from "../screens/AddToCollection/AddCar"
-import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
+// import { DemoNavigator, DemoTabParamList } from "./DemoNavigator" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-import User from "../screens/context/User"
+// import User from "../screens/context/User"
 import NewsScreen from "../screens/Home/NewsScreen"
 import SingleCollectionScreen from "../screens/Collection/SingleCollectionScreen"
+import LoginScreen from "../screens/Profile/LoginScreen"
+import CreateUser from "../screens/Profile/CreateUserScreen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -47,6 +49,7 @@ import SingleCollectionScreen from "../screens/Collection/SingleCollectionScreen
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
+
 export type AppStackParamList = {
   HomeScreen: undefined
   WelcomeScreen: undefined
@@ -58,6 +61,8 @@ export type AppStackParamList = {
   AddCar: undefined
   NewsScreen: undefined
   SingleCollectionScreen: undefined
+  LoginScreen: undefined
+  CreateUser: undefined
 }
 
 /**
@@ -96,6 +101,8 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="AddCar" component={AddCar} />
           <Stack.Screen name="NewsScreen" component={NewsScreen} />
           <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="CreateUser" component={CreateUser} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -109,6 +116,8 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="AddCar" component={AddCar} />
           <Stack.Screen name="NewsScreen" component={NewsScreen} />
           <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="CreateUser" component={CreateUser} />
         </Stack.Group>
       )}
     </Stack.Navigator>
