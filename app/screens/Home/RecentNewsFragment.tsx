@@ -21,7 +21,8 @@ const RecentNewsFragment = () => {
         </Text>
         <Box mt={3} alignSelf={"flex-end"} justifyContent={"center"}>
           <Buttonv2
-            padding={true}
+            padding={false}
+            width={false}
             onPress={() => {
               navigation.navigate("NewsScreen", { items: item })
             }}

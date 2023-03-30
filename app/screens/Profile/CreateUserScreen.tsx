@@ -116,7 +116,7 @@ const CreateUser = () => {
               </Box>
             </FormControl>
 
-            <ButtonWithGradient padding={false} onPress={onCreateAccountPress}>
+            <ButtonWithGradient padding={true} width={true} onPress={onCreateAccountPress}>
               Create the account
             </ButtonWithGradient>
           </Box>

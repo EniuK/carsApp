@@ -50,7 +50,7 @@ function Article({ item: { title, desc, id } }) {
         </VStack>
       </HStack>
       <Box alignSelf={"flex-end"} justifyContent={"center"} mt={1}>
-        <Buttonv2 padding={true}>Read more</Buttonv2>
+        <Buttonv2 padding={false}>Read more</Buttonv2>
       </Box>
       {fakeArticles.length + 1 === id ? null : <Divider mt={3} ml={10} bg={"gray.400"} />}
     </Box>
