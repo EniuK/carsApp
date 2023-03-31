@@ -184,6 +184,23 @@ export class Api {
       collectionElements: rawData as any,
     }
   }
+
+  async addUser(user: ElementToAdd): Promise<
+    | {
+        kind: "ok"
+        user: User
+      }
+    | GeneralApiProblem
+  > {
+    const response = await this.apisauce.post(`/users`, { ...user })
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      user: rawData as User,
+    }
+  }
 }
 
 // Singleton instance of the API for convenience

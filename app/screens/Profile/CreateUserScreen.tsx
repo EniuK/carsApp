@@ -1,5 +1,4 @@
 import {
-  Button,
   HStack,
   Text,
   Box,
@@ -9,19 +8,76 @@ import {
   Divider,
   Icon,
   Pressable,
+  Checkbox,
 } from "native-base"
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import { MaterialIcons } from "@expo/vector-icons"
 import ButtonWithGradient from "../../components/ButtonWithGradient"
+import { string, object } from "yup"
+import { api } from "../../services/api"
+import Touchable from "../../components/Touchable"
+
+const UserSchema = object({
+  name: string().required(),
+  email: string().email().required(),
+  password: string().required(),
+  dateOfJoining: string().required(),
+  id: string().required(),
+})
+
+const initialUser = {
+  name: "",
+  email: "",
+  password: "",
+  dateOfJoining: new Date().toJSON().slice(0, 10),
+  id: Date.now().toString(),
+}
 
 const CreateUser = () => {
   const navigation = useNavigation()
   const [show, setShow] = useState(false)
-  const onCreateAccountPress = useCallback(() => {
+  const [user, setUser] = useState<UserSchema>(initialUser)
+  const [error, setError] = useState(false)
+  const [password, SetPassword] = useState("")
+  const [createdAccount, setCreatedAccount] = useState(false)
+
+  useEffect(() => {
+    if (createdAccount === true) {
+      onHomePress()
+    }
+  }, [createdAccount])
+
+  const onHomePress = useCallback(() => {
     navigation.navigate("HomeScreen")
   }, [])
+
+  const handleChange = (key, value) => {
+    setUser((prevState) => ({ ...prevState, [key]: value }))
+  }
+
+  const onCreateAccountPress = async () => {
+    try {
+      setError(false)
+      const walidacja = await UserSchema.validate(user)
+      if (user.password !== password) {
+        throw new Error("incorrect password")
+      }
+      console.log({ walidacja })
+      const userToAdd = {
+        ...user,
+        premium: false,
+        blocked: false,
+        status: "active",
+      }
+      await api.addUser(userToAdd)
+      setCreatedAccount(true)
+    } catch (error) {
+      console.log(error)
+      setError(true)
+    }
+  }
 
   return (
     <ScreenWrapper>
@@ -38,11 +94,11 @@ const CreateUser = () => {
               <Box mt={2} w={"100%"}>
                 <Input
                   type="text"
-                  //   value={"model"}
+                  value={user.name}
                   borderWidth={0}
                   pl={0}
                   w={"90%"}
-                  //   onChangeText={(text) => handleChange("model", text)}
+                  onChangeText={(text) => handleChange("name", text)}
                 />
                 <Divider w={300} borderWidth={1} borderColor={"B7B7B7"} />
                 <Text color={"#B7B7B7"} fontSize={"xs"}>
@@ -54,11 +110,11 @@ const CreateUser = () => {
               <Box mt={2} w={"100%"}>
                 <Input
                   type="text"
-                  //   value={"model"}
+                  value={user.email}
                   borderWidth={0}
                   pl={0}
                   w={"90%"}
-                  //   onChangeText={(text) => handleChange("model", text)}
+                  onChangeText={(text) => handleChange("email", text)}
                 />
                 <Divider w={300} borderWidth={1} borderColor={"B7B7B7"} />
                 <Text color={"#B7B7B7"} fontSize={"xs"}>
@@ -72,6 +128,8 @@ const CreateUser = () => {
                 <Input
                   w={"90%"}
                   borderWidth={0}
+                  value={user.password}
+                  onChangeText={(text) => handleChange("password", text)}
                   type={show ? "text" : "password"}
                   InputRightElement={
                     <Pressable onPress={() => setShow(!show)}>
@@ -87,7 +145,7 @@ const CreateUser = () => {
 
                 <Divider w={300} borderWidth={1} borderColor={"B7B7B7"} />
                 <Text color={"#B7B7B7"} fontSize={"xs"}>
-                  REPEAT PASSWORD
+                  PASSWORD
                 </Text>
               </Box>
             </FormControl>
@@ -96,6 +154,8 @@ const CreateUser = () => {
                 <Input
                   w={"90%"}
                   borderWidth={0}
+                  value={password}
+                  onChangeText={(text) => SetPassword(text)}
                   type={show ? "text" : "password"}
                   InputRightElement={
                     <Pressable onPress={() => setShow(!show)}>
@@ -113,12 +173,20 @@ const CreateUser = () => {
                 <Text color={"#B7B7B7"} fontSize={"xs"}>
                   REPEAT PASSWORD
                 </Text>
+                {error ? <Text color={"red.600"}>wrong password</Text> : null}
               </Box>
             </FormControl>
-
+            <HStack mb={10}>
+              <Checkbox value="test" accessibilityLabel="This is a dummy checkbox" />
+              <Text ml={3} fontSize={12}>
+                I accept the terms and conditions
+              </Text>
+            </HStack>
+            {/* <Touchable onPress={onHomePress}> */}
             <ButtonWithGradient padding={true} width={true} onPress={onCreateAccountPress}>
               Create the account
             </ButtonWithGradient>
+            {/* </Touchable> */}
           </Box>
         </Box>
       </View>
