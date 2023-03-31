@@ -201,6 +201,39 @@ export class Api {
       user: rawData as User,
     }
   }
+
+  async getArticles(): Promise<
+    | {
+        kind: "ok"
+        articles: any
+      }
+    | GeneralApiProblem
+  > {
+    const response = await this.apisauce.get(`/articles`)
+    const rawData = response.data
+    // do poprawienia i dodania typ
+    return {
+      kind: "ok",
+      articles: rawData as any,
+    }
+  }
+
+  //   async getFeaturedCollections(): Promise<
+  //   | {
+  //       kind: "ok"
+  //       featuredCollections: CollectionDb[]
+  //     }
+  //   | GeneralApiProblem
+  // > {
+  //   const response = await this.apisauce.get("/collections/featured")
+
+  //   const rawData = response.data
+
+  //   return {
+  //     kind: "ok",
+  //     featuredCollections: rawData as CollectionDb[],
+  //   }
+  // }
 }
 
 // Singleton instance of the API for convenience

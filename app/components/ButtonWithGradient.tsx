@@ -2,9 +2,8 @@ import LinearGradient from "react-native-linear-gradient"
 import { Box, Button, Text } from "native-base"
 import React from "react"
 import { Dimensions, ViewStyle } from "react-native"
-// todo: naprawic bold i zrobic by renderowalo sie warunkowo
 
-const ButtonWithGradient = ({ children, padding, onPress, width }) => {
+const ButtonWithGradient = ({ children, padding, onPress, width, fontsize }) => {
   const windowWidth = Dimensions.get("window").width
   return (
     <Box w={padding ? windowWidth - 100 : null}>
@@ -23,7 +22,7 @@ const ButtonWithGradient = ({ children, padding, onPress, width }) => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Text color={"white"} fontSize={18} bold>
+          <Text color={"white"} fontSize={fontsize || 18} bold>
             {children}
           </Text>
         </Button>

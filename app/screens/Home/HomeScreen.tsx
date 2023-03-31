@@ -38,10 +38,10 @@ const HomeScreen = observer(() => {
   ]
   const navigation = useNavigation()
   const [featuredCollections, setFeaturedCollections] = useState(initialFeaturedCollections)
+
   useEffect(() => {
     async function fun() {
       const data = await api.getFeaturedCollections()
-
       setFeaturedCollections(data.featuredCollections)
     }
 

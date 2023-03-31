@@ -27,7 +27,8 @@ const CollectionFragment = () => {
     fun()
   }, [])
   const CollectionItem = ({ item }) => {
-    let elements = item.data
+    const elements = item.data
+
     return (
       <Box
         borderRadius={10}
@@ -35,7 +36,7 @@ const CollectionFragment = () => {
         mr={4}
         mb={2}
         key={item.title}
-        {...(item.data[0] === undefined ? { width: "100%" } : { width: "100%" })}
+        width={"100%"}
         flexDirection="row"
         justifyContent="space-between"
       >
@@ -43,9 +44,9 @@ const CollectionFragment = () => {
           <Text bold fontSize={24}>
             {item.title}
           </Text>
-          {item.data[0] === undefined ? null : (
-            <FlatList data={elements ?? []} renderItem={CollectionElements} numColumns={2} />
-          )}
+          {/* {item.data[0] === undefined ? null : ( */}
+          <FlatList data={elements ?? []} renderItem={CollectionElements} numColumns={2} />
+          {/* )} */}
         </VStack>
       </Box>
     )
@@ -68,7 +69,7 @@ const CollectionFragment = () => {
           pr={0}
           ml={0}
         />
-        <Text bold>{elements.item.brand}</Text>
+        <Text bold>{elements.item.brand || elements.item.name}</Text>
       </Touchable>
     )
   }

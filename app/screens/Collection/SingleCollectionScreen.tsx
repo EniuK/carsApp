@@ -40,7 +40,7 @@ const SingleCollectionScreen = ({ route }) => {
         </Touchable>
         <Box justifyContent={"center"} alignItems={"center"}>
           <Text color={"black"} fontSize={24}>
-            {item.item.brand}
+            {item.item.brand || item.item.name}
           </Text>
         </Box>
       </View>

@@ -9,6 +9,7 @@ import {
   Icon,
   Pressable,
   Checkbox,
+  Button,
 } from "native-base"
 import React, { useCallback, useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
@@ -17,7 +18,6 @@ import { MaterialIcons } from "@expo/vector-icons"
 import ButtonWithGradient from "../../components/ButtonWithGradient"
 import { string, object } from "yup"
 import { api } from "../../services/api"
-import Touchable from "../../components/Touchable"
 
 const UserSchema = object({
   name: string().required(),
@@ -189,6 +189,9 @@ const CreateUser = () => {
             {/* </Touchable> */}
           </Box>
         </Box>
+        <Button mt={5} onPress={onHomePress}>
+          skip making user
+        </Button>
       </View>
     </ScreenWrapper>
   )
