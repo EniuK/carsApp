@@ -7,7 +7,6 @@ import { api } from "../../services/api"
 const SmallArticle = () => {
   const [smallArticles, setSmallArticles] = useState([])
 
-  console.log(smallArticles)
   useEffect(() => {
     async function getArticles() {
       const art = await api.getArticles()

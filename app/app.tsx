@@ -1,7 +1,7 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React from "react"
+import React, { useEffect } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
 import { NativeBaseProvider, extendTheme } from "native-base"
@@ -11,7 +11,6 @@ import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
-
 // Set up Reactotron, which is a free desktop app for inspecting and debugging
 // React Native apps. Learn more here: https://github.com/infinitered/reactotron
 setupReactotron({
@@ -57,16 +56,25 @@ interface AppProps {
  * This is the root component of our app.
  */
 function App(props: AppProps) {
+  // const [fontsLoaded] = useFonts({
+  //   "lexend-regular": require("./assets/fonts/Lexend-Regular.ttf"),
+  // })
+
+  // if (!fontsLoaded) {
+  //   return null
+  // }
+
+  // useEffect(() => {
+  //   if (!fontsLoaded) {
+  //     return null
+  //   }
+  // }, [fontsLoaded])
   const { hideSplashScreen } = props
   const {
     initialNavigationState,
     onNavigationStateChange,
     isRestored: isNavigationStateRestored,
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
-
-  const [fontsLoaded] = useFonts({
-    Lexend: "Lexend_100Thin",
-  })
 
   const theme = extendTheme({
     fontConfig: {

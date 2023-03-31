@@ -7,7 +7,6 @@ import CardCar from "../../../assets/images/card_car.png"
 
 const NewsScreen = ({ route }) => {
   const { items } = route.params
-  console.log(items)
   return (
     <ScreenWrapper>
       <BackHeader title="NewsScreen" />
@@ -19,8 +18,8 @@ const NewsScreen = ({ route }) => {
         <Text bold marginTop={0} marginBottom={3} ml={2} fontSize={18}>
           {items.title}
         </Text>
-        <Text numberOfLines={3} ml={2} fontSize={14} pr={2}>
-          {items.desc}
+        <Text ml={2} fontSize={14} pr={2}>
+          {items.description}
         </Text>
       </VStack>
     </ScreenWrapper>
