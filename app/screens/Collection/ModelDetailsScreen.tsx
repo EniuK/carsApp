@@ -8,7 +8,6 @@ import car3 from "../../../assets/images/car3.jpeg"
 
 const ModelDetails = ({ route }) => {
   const { items } = route.params
-  console.log(items)
   const windowWidth = Dimensions.get("window").width
   const colors = items.colors
   const colorsToCheck = [

@@ -85,13 +85,9 @@ export class Api {
   }
   // @demo remove-block-end
 
-  async getUserElements(userId: string): Promise<
-    | {
-        kind: "ok"
-        userElements: CollectionWithElements[]
-      }
-    | GeneralApiProblem
-  > {
+  async getUserElements(
+    userId: string,
+  ): Promise<{ kind: "ok"; userElements: CollectionWithElements[] } | GeneralApiProblem> {
     const response = await this.apisauce.get(`/userElements/${userId}`)
 
     const rawData = response.data
@@ -99,6 +95,20 @@ export class Api {
     return {
       kind: "ok",
       userElements: rawData as CollectionWithElements[],
+    }
+  }
+
+  async getAllUserElements(
+    // nazewnictwo do zmiany
+    userId: string,
+  ): Promise<{ kind: "ok"; userElements: [] } | GeneralApiProblem> {
+    const response = await this.apisauce.get(`/getAllUserElements/${userId}`)
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      userElements: rawData as [],
     }
   }
 
@@ -133,7 +143,6 @@ export class Api {
       ...element,
     }
 
-    console.log({ ...el })
     const response = await this.apisauce.post(
       `/elements`,
       { ...el },

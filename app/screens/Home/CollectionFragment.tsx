@@ -52,8 +52,6 @@ const CollectionFragment = () => {
   }
 
   const CollectionElements = (elements) => {
-    console.log(elements)
-
     return (
       <Touchable
         onPress={() => {

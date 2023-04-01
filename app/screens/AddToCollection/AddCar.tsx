@@ -1,5 +1,5 @@
 import { SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Animated } from "react-native"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import {
   Text,
   Box,
@@ -52,6 +52,7 @@ const AddCar = () => {
     "#FFD700", // gold
   ]
   const navigation = useNavigation()
+
   const initialElement = {
     carLink:
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fallegro.pl%2Foferta%2Fhot-wheels-toyota-supra-12374715136&psig=AOvVaw2r-YHEEhx7XjGZR4PT63r6&ust=1680097627987000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODUpsTh_v0CFQAAAAAdAAAAABAF",
@@ -77,9 +78,17 @@ const AddCar = () => {
       setElement({ ...element, ["colors"]: selectedColors }) // tylko tak dziala xd
       const walidacja = await ElementSchema.validate(element)
 
-      await api.addElement(element, "1679306069692")
+      const elementsToCheck = await api.getAllUserElements("1679306069692")
+      elementsToCheck.userElements.filter((e) => {
+        return e.owneruserid === "1679306069692"
+      })
+      if (elementsToCheck.userElements.length > 50) {
+        navigation.navigate("WelcomeScreen")
+      } else {
+        await api.addElement(element, "1679306069692")
 
-      navigation.navigate("ModelDetailsScreen", { items: element })
+        navigation.navigate("ModelDetailsScreen", { items: element })
+      }
     } catch (error) {
       console.log(error)
     }

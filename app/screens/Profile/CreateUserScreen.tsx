@@ -64,7 +64,6 @@ const CreateUser = () => {
       if (user.password !== password) {
         throw new Error("incorrect password")
       }
-      console.log({ walidacja })
       const userToAdd = {
         ...user,
         premium: false,

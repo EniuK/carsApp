@@ -35,7 +35,7 @@ import NewsScreen from "../screens/Home/NewsScreen"
 import SingleCollectionScreen from "../screens/Collection/SingleCollectionScreen"
 import LoginScreen from "../screens/Profile/LoginScreen"
 import CreateUser from "../screens/Profile/CreateUserScreen"
-
+import ElementsReached from "../screens/PayScreens/ReachedLimitScreen"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -63,6 +63,7 @@ export type AppStackParamList = {
   SingleCollectionScreen: undefined
   LoginScreen: undefined
   CreateUser: undefined
+  ElementsReached: undefined
 }
 
 /**
@@ -92,6 +93,8 @@ const AppStack = observer(function AppStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {authorized ? (
         <Stack.Group>
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="CameraScreen" component={CameraScreen} />
           <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
@@ -103,6 +106,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateUser" component={CreateUser} />
+          <Stack.Screen name="ElementsReached" component={ElementsReached} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -118,6 +122,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="SingleCollectionScreen" component={SingleCollectionScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateUser" component={CreateUser} />
+          <Stack.Screen name="ElementsReached" component={ElementsReached} />
         </Stack.Group>
       )}
     </Stack.Navigator>

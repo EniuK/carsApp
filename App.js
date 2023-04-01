@@ -13,4 +13,4 @@ function IgniteApp() {
 }
 // czemu zwracany jest komponent przyciągnięty tutaj a nie igniteapp?
 registerRootComponent(IgniteApp)
-export default IgniteApp
+export default App

@@ -111,7 +111,6 @@ function App(props: AppProps) {
   if (!fontsLoaded) {
     return <Splash />
   }
-  console.log(fontsLoaded)
   return (
     <AppProvider>
       <NativeBaseProvider theme={theme}>
