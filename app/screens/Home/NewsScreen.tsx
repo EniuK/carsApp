@@ -11,7 +11,7 @@ const NewsScreen = ({ route }) => {
     <ScreenWrapper>
       <BackHeader title="NewsScreen" />
 
-      <VStack pb={3} pl={3} pr={3} bg="#EDF0FF" width={"100%"}>
+      <VStack pb={3} pl={3} pr={3} h={"100%"} borderTopRadius={10} bg="#EDF0FF" width={"100%"}>
         <Box alignItems={"center"} justifyContent={"center"}>
           <Image source={CardCar} borderRadius={8} alt="big red kitty" />
         </Box>

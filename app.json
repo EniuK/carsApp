@@ -8,6 +8,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-all.png",
+
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -17,7 +18,14 @@
       "fallbackToCacheTimeout": 0
     },
     "jsEngine": "hermes",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": ["fonts/*.(ttf|otf)"],
+    "fonts": [
+      {
+        "asset": "assets/fonts/Lexend-Regular.ttf",
+        "fontWeight": "normal",
+        "fontStyle": "normal"
+      }
+    ],
     "android": {
       "icon": "./assets/images/splash.png",
       "package": "com.excitingit.carsapp",

@@ -1,7 +1,7 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
-import { useFonts } from "expo-font"
-import React, { useEffect } from "react"
+import { useFonts, Lexend_400Regular } from "../node_modules/@expo-google-fonts/lexend"
+import React, { useEffect, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
 import { NativeBaseProvider, extendTheme } from "native-base"
@@ -11,6 +11,8 @@ import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
+import Splash from "./screens/Home/SplashScreen"
+import { AppProvider } from "./screens/context/userContext"
 // Set up Reactotron, which is a free desktop app for inspecting and debugging
 // React Native apps. Learn more here: https://github.com/infinitered/reactotron
 setupReactotron({
@@ -56,19 +58,10 @@ interface AppProps {
  * This is the root component of our app.
  */
 function App(props: AppProps) {
-  // const [fontsLoaded] = useFonts({
-  //   "lexend-regular": require("./assets/fonts/Lexend-Regular.ttf"),
-  // })
+  const [fontsLoaded] = useFonts({
+    lexend400Regular: Lexend_400Regular,
+  })
 
-  // if (!fontsLoaded) {
-  //   return null
-  // }
-
-  // useEffect(() => {
-  //   if (!fontsLoaded) {
-  //     return null
-  //   }
-  // }, [fontsLoaded])
   const { hideSplashScreen } = props
   const {
     initialNavigationState,
@@ -80,9 +73,12 @@ function App(props: AppProps) {
     fontConfig: {
       Lexend: {
         100: {
-          normal: "Lexend_100Thin",
+          normal: "lexend400Regular",
         },
       },
+    },
+    fonts: {
+      body: "Lexend",
     },
     colors: {
       background: "#4D30FF",
@@ -112,21 +108,26 @@ function App(props: AppProps) {
     prefixes: [prefix],
     config,
   }
-
+  if (!fontsLoaded) {
+    return <Splash />
+  }
+  console.log(fontsLoaded)
   return (
-    <NativeBaseProvider theme={theme}>
-      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <ErrorBoundary catchErrors={Config.catchErrors}>
-          <AppNavigator
-            linking={linking}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          >
-            {/* <View onLayout={onLayoutRootView}></View> */}
-          </AppNavigator>
-        </ErrorBoundary>
-      </SafeAreaProvider>
-    </NativeBaseProvider>
+    <AppProvider>
+      <NativeBaseProvider theme={theme}>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <ErrorBoundary catchErrors={Config.catchErrors}>
+            <AppNavigator
+              linking={linking}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            >
+              {/* <View onLayout={onLayoutRootView}></View> */}
+            </AppNavigator>
+          </ErrorBoundary>
+        </SafeAreaProvider>
+      </NativeBaseProvider>
+    </AppProvider>
   )
 }
 

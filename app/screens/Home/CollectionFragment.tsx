@@ -28,7 +28,6 @@ const CollectionFragment = () => {
   }, [])
   const CollectionItem = ({ item }) => {
     const elements = item.data
-
     return (
       <Box
         borderRadius={10}
@@ -53,10 +52,12 @@ const CollectionFragment = () => {
   }
 
   const CollectionElements = (elements) => {
+    console.log(elements)
+
     return (
       <Touchable
         onPress={() => {
-          navigation.navigate("ModelDetailsScreen", { items: elements })
+          navigation.navigate("ModelDetailsScreen", { items: elements.item })
         }}
       >
         <Image
