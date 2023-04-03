@@ -6,9 +6,9 @@ import { observer } from "mobx-react-lite"
 const ElementsReached = observer(() => {
   const navigation = useNavigation()
 
-  //   const onElementsReachedPress = useCallback(() => {
-  //     navigation.navigate("ElementsReached")
-  //   }, [])
+  const onElementsReachedPress = useCallback(() => {
+    navigation.navigate("HomeScreen")
+  }, [])
 
   return (
     <ScreenWrapper>
@@ -26,7 +26,7 @@ const ElementsReached = observer(() => {
               variant={"ghost"}
               borderWidth={2}
               borderColor={"white"}
-              //   onPress={onElementsReachedPress}
+              onPress={onElementsReachedPress}
               justifyContent={"center"}
               alignItems={"center"}
             >

@@ -13,7 +13,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useEffect } from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
 // import { useStores } from "../models" // @demo remove-current-line
@@ -88,13 +88,12 @@ const AppStack = observer(function AppStack() {
 
   // {logged ? "WelcomeScreen" : }
 
-  const authorized = false
+  const authorized = true
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {authorized ? (
         <Stack.Group>
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="CameraScreen" component={CameraScreen} />
           <Stack.Screen name="CollectionScreen" component={CollectionScreen} />

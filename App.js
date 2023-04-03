@@ -7,10 +7,9 @@ import * as SplashScreen from "expo-splash-screen"
 useEffect(() => {
   SplashScreen.preventAutoHideAsync()
 }, [])
-
 function IgniteApp() {
   return <App hideSplashScreen={SplashScreen.hideAsync} />
 }
 // czemu zwracany jest komponent przyciągnięty tutaj a nie igniteapp?
 registerRootComponent(IgniteApp)
-export default App
+export default IgniteApp
