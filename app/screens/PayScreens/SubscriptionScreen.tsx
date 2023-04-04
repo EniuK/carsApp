@@ -19,11 +19,12 @@ const SubscriptionScreen = observer(() => {
     <ScreenWrapper>
       <View h={"100%"} w={"100%"} justifyContent={"center"} alignItems={"center"}>
         <Box
-          h={600}
+          h={"90%"}
           w={"90%"}
           mt={10}
           ml={5}
           mr={5}
+          borderRadius={5}
           bg={"white"}
           justifyContent={"flex-start"}
           alignItems={"center"}
@@ -43,7 +44,8 @@ const SubscriptionScreen = observer(() => {
               </LinearGradient>
             </Box>
             {/* box to justify content.  */}
-            <Box h={"33%"} />
+            <Box h={"35%"} />
+
             <Text fontFamily="body" fontWeight="600" mb={-3}>
               ONLY
             </Text>
@@ -51,7 +53,7 @@ const SubscriptionScreen = observer(() => {
             <Text fontSize={70} color={"#09154D"} fontFamily={"body"} fontWeight={700}>
               9,99$
             </Text>
-            <Text fontSize={12} fontFamily="body" fontWeight="600" mb={5}>
+            <Text fontSize={12} fontFamily="body" fontWeight="600" mb={7}>
               ONE-TIME PAYMENT
             </Text>
             <Box justifyContent={"flex-start"} alignItems={"flex-start"} w={"70%"} mb={10}>
@@ -94,7 +96,9 @@ const SubscriptionScreen = observer(() => {
               Upgrade
             </ButtonWithGradient>
             <Touchable onPress={onHomeScreenPress}>
-              <Text mt={2}>Skip</Text>
+              <Text mt={3} fontFamily="body" fontWeight="600">
+                Skip
+              </Text>
             </Touchable>
           </VStack>
         </Box>

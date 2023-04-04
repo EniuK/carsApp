@@ -48,7 +48,6 @@ const ElementsReached = observer(() => {
           <Box justifyContent={"center"} alignItems={"center"}>
             <Button
               mt={2}
-              w={280}
               h="60"
               variant={"ghost"}
               borderWidth={2}
