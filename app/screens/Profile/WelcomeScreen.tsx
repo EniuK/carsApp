@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import { observer } from "mobx-react-lite"
-import LoginScreen from "../Profile/LoginScreen"
 const WelcomeScreen = observer(() => {
   const navigation = useNavigation()
 

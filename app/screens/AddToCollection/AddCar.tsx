@@ -83,7 +83,7 @@ const AddCar = () => {
         return e.owneruserid === "1679306069692"
       })
       if (elementsToCheck.userElements.length > 50) {
-        navigation.navigate("WelcomeScreen")
+        navigation.navigate("ElementsReached")
       } else {
         await api.addElement(element, "1679306069692")
 

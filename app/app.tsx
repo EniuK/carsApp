@@ -1,6 +1,13 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
-import { useFonts, Lexend_400Regular } from "../node_modules/@expo-google-fonts/lexend"
+import {
+  useFonts,
+  Lexend_400Regular,
+  Lexend_900Black,
+  Lexend_700Bold,
+  Lexend_600SemiBold,
+  Lexend_500Medium,
+} from "../node_modules/@expo-google-fonts/lexend"
 import React, { useEffect, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
@@ -60,6 +67,10 @@ interface AppProps {
 function App(props: AppProps) {
   const [fontsLoaded] = useFonts({
     lexend400Regular: Lexend_400Regular,
+    lexend900Black: Lexend_900Black,
+    lexend700Bold: Lexend_700Bold,
+    lexend600SemiBold: Lexend_600SemiBold,
+    lexend500Medium: Lexend_500Medium,
   })
 
   const { hideSplashScreen } = props
@@ -73,6 +84,18 @@ function App(props: AppProps) {
       Lexend: {
         100: {
           normal: "lexend400Regular",
+        },
+        500: {
+          normal: "lexend500Medium",
+        },
+        600: {
+          normal: "lexend600SemiBold",
+        },
+        700: {
+          normal: "lexend700Bold",
+        },
+        900: {
+          normal: "lexend900Black",
         },
       },
     },
