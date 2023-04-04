@@ -194,10 +194,11 @@ export class Api {
     }
   }
 
+  // otypowac usera przekazywanego do be
   async addUser(user: ElementToAdd): Promise<
     | {
         kind: "ok"
-        user: User
+        user: any
       }
     | GeneralApiProblem
   > {
@@ -207,7 +208,7 @@ export class Api {
 
     return {
       kind: "ok",
-      user: rawData as User,
+      user: rawData as any,
     }
   }
 
@@ -227,16 +228,12 @@ export class Api {
     }
   }
 
-  async getUserCollections(
-    userId: string,
-  ): Promise<{ kind: "ok"; userCollections: CollectionDb[] } | GeneralApiProblem> {
+  async getUserCollections(userId: string): Promise<{ userCollections: any } | GeneralApiProblem> {
     const response = await this.apisauce.get(`/getUserCollections/${userId}`)
 
     const rawData = response.data
-
     return {
-      kind: "ok",
-      userCollections: rawData as CollectionDb[],
+      userCollections: rawData as any,
     }
   }
 }

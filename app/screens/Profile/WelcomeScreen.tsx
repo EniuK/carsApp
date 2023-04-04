@@ -17,7 +17,7 @@ const WelcomeScreen = observer(() => {
         <Box justifyContent={"center"} alignItems={"center"}>
           <Box h={"70%"} alignContent={"flex-end"} justifyContent={"center"}>
             <Text bold color={"white"} fontSize={40}>
-              DiecastMe
+              TrueCollector
             </Text>
           </Box>
           <Box mt={70} justifyContent={"center"} alignItems={"center"}>

@@ -22,6 +22,7 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
   const opacityAnim = useRef(new Animated.Value(1)).current
 
   const { users } = useContext(AppContext)
+
   useEffect(() => {
     if (!users.id) {
       noUserErrorHandler()

@@ -78,7 +78,7 @@ const CreateUser = () => {
       await api.addUser(userToAdd)
       setCreatedAccount(true)
     } catch (error) {
-      // console.log(error.errors)
+      console.log(error)
       setError(true)
       setTestError(error.errors)
     }
@@ -90,7 +90,7 @@ const CreateUser = () => {
         <Box justifyContent={"center"} alignItems={"center"} w={"90%"} bg={"white"}>
           <Box mb={35} h={"20%"} alignContent={"flex-end"} justifyContent={"flex-end"}>
             <Text bold color={"black"} fontSize={40}>
-              DiecastMe
+              TrueCollector
             </Text>
           </Box>
 

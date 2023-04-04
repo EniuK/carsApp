@@ -19,7 +19,7 @@ const LoginScreen = observer(() => {
         <Box justifyContent={"flex-end"} alignItems={"center"}>
           <Box h={"20%"} alignContent={"flex-end"} justifyContent={"flex-end"}>
             <Text bold color={"white"} fontSize={40}>
-              DiecastMe
+              TrueCollector
             </Text>
           </Box>
           <Text mt={20} mb={5} fontSize={18} bold color={"white"}>

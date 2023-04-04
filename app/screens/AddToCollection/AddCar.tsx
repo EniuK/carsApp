@@ -12,6 +12,7 @@ import {
   Button,
   View,
   HStack,
+  Checkbox,
 } from "native-base"
 import BackHeader from "../../components/BackHeader"
 import CardCar from "../../../assets/images/card_car.png"
@@ -70,10 +71,38 @@ const AddCar = () => {
     collectionsId: [],
   }
   const [element, setElement] = useState<ElementToAdd>(initialElement)
+  // pobiera kolekcje z bazy danych by moc pozniej do nich przypisac element
+  const [collections, setCollections] = useState([])
 
-  // useEffect(()=>{
-  // const getUserCollections =
-  // },[])
+  useEffect(() => {
+    const fun = async () => {
+      const getUserCollections = await api.getUserCollections(users.id)
+      setCollections(getUserCollections.userCollections)
+    }
+    fun()
+  }, [])
+
+  // funkcja na checkbox (do zmiany) razem z komponentem ktory ma dzialac na podobnej zasadzie co wybor kolorow
+  // const handleOptionSelect = (option) => {
+  //   if (collections.includes(option)) {
+  //     setCollections(collections.filter((selectedOption) => selectedOption !== option))
+  //   } else {
+  //     setCollections([...collections, option])
+  //   }
+  // }
+  // {collections.map((option) => (
+  //   <Touchable key={option} onPress={() => handleOptionSelect(option)}>
+  //     <Box>
+  //       <Checkbox
+  //         isChecked={collections.includes(option)}
+  //         onPress={() => handleOptionSelect(option)}
+  //       />
+  //       <Box>
+  //         <Text>{option}</Text>
+  //       </Box>
+  //     </Box>
+  //   </Touchable>
+  // ))}
   const handleChange = (key, value) => {
     setElement((prevState) => ({ ...prevState, [key]: value }))
   }
@@ -111,7 +140,7 @@ const AddCar = () => {
     } else {
       setSelectedColors([...selectedColors, color])
     }
-    setElement({ ...element, colors: selectedColors })
+    setElement({ ...element, colors: [...selectedColors] })
   }
 
   const toggleOpen = () => {
