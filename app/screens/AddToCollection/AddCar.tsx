@@ -1,5 +1,5 @@
 import { SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Animated } from "react-native"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import {
   Text,
   Box,
@@ -22,7 +22,7 @@ import yup, { string, number, date, object, array } from "yup"
 import { api } from "../../services/api"
 import { ElementToAdd } from "../../types/types"
 import Touchable from "../../components/Touchable"
-import { color } from "react-native-reanimated"
+import { AppContext } from "../context/userContext"
 
 const ElementSchema = object({
   carLink: string().url().nullable(),
@@ -52,6 +52,7 @@ const AddCar = () => {
     "#FFD700", // gold
   ]
   const navigation = useNavigation()
+  const { users } = useContext(AppContext)
 
   const initialElement = {
     carLink:
@@ -63,29 +64,33 @@ const AddCar = () => {
     series: "",
     id: Date.now().toString(),
     description: "",
-    owneruserid: "1679306069692",
+    owneruserid: users.id,
     colors: [""],
     collectionId: "test",
     collectionsId: [],
   }
   const [element, setElement] = useState<ElementToAdd>(initialElement)
 
+  // useEffect(()=>{
+  // const getUserCollections =
+  // },[])
   const handleChange = (key, value) => {
     setElement((prevState) => ({ ...prevState, [key]: value }))
   }
   const handleSubmit = async () => {
     try {
-      setElement({ ...element, ["colors"]: selectedColors }) // tylko tak dziala xd
+      // nie dziala - nie zapisuje ostatniego wybranego koloru
       const walidacja = await ElementSchema.validate(element)
 
-      const elementsToCheck = await api.getAllUserElements("1679306069692")
+      const elementsToCheck = await api.getAllUserElements(users.id)
       elementsToCheck.userElements.filter((e) => {
-        return e.owneruserid === "1679306069692"
+        return e.owneruserid === users.id
       })
       if (elementsToCheck.userElements.length > 50) {
         navigation.navigate("ElementsReached")
       } else {
-        await api.addElement(element, "1679306069692")
+        console.log(element)
+        await api.addElement(element, users.id)
 
         navigation.navigate("ModelDetailsScreen", { items: element })
       }
@@ -106,6 +111,7 @@ const AddCar = () => {
     } else {
       setSelectedColors([...selectedColors, color])
     }
+    setElement({ ...element, colors: selectedColors })
   }
 
   const toggleOpen = () => {

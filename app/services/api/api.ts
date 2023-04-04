@@ -227,22 +227,18 @@ export class Api {
     }
   }
 
-  //   async getFeaturedCollections(): Promise<
-  //   | {
-  //       kind: "ok"
-  //       featuredCollections: CollectionDb[]
-  //     }
-  //   | GeneralApiProblem
-  // > {
-  //   const response = await this.apisauce.get("/collections/featured")
+  async getUserCollections(
+    userId: string,
+  ): Promise<{ kind: "ok"; userCollections: CollectionDb[] } | GeneralApiProblem> {
+    const response = await this.apisauce.get(`/getUserCollections/${userId}`)
 
-  //   const rawData = response.data
+    const rawData = response.data
 
-  //   return {
-  //     kind: "ok",
-  //     featuredCollections: rawData as CollectionDb[],
-  //   }
-  // }
+    return {
+      kind: "ok",
+      userCollections: rawData as CollectionDb[],
+    }
+  }
 }
 
 // Singleton instance of the API for convenience

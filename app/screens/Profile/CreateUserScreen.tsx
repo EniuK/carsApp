@@ -11,13 +11,14 @@ import {
   Checkbox,
   Button,
 } from "native-base"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import { MaterialIcons } from "@expo/vector-icons"
 import ButtonWithGradient from "../../components/ButtonWithGradient"
 import { string, object } from "yup"
 import { api } from "../../services/api"
+import { AppContext } from "../context/userContext"
 
 const UserSchema = object({
   name: string().required(),
@@ -40,11 +41,14 @@ const CreateUser = () => {
   const [show, setShow] = useState(false)
   const [user, setUser] = useState<UserSchema>(initialUser)
   const [error, setError] = useState(false)
+  const [testError, setTestError] = useState({})
   const [password, SetPassword] = useState("")
   const [createdAccount, setCreatedAccount] = useState(false)
-
+  // adding user to context
+  const { setUsers } = useContext(AppContext)
   useEffect(() => {
     if (createdAccount === true) {
+      setUsers(user)
       onHomePress()
     }
   }, [createdAccount])
@@ -60,6 +64,7 @@ const CreateUser = () => {
   const onCreateAccountPress = async () => {
     try {
       setError(false)
+
       const walidacja = await UserSchema.validate(user)
       if (user.password !== password) {
         throw new Error("incorrect password")
@@ -73,8 +78,9 @@ const CreateUser = () => {
       await api.addUser(userToAdd)
       setCreatedAccount(true)
     } catch (error) {
-      console.log(error)
+      // console.log(error.errors)
       setError(true)
+      setTestError(error.errors)
     }
   }
 
@@ -119,6 +125,7 @@ const CreateUser = () => {
                 <Text color={"#B7B7B7"} fontSize={"xs"}>
                   E-MAIL ADRESS
                 </Text>
+                {/* {!testError ? null : <Text>{testError}</Text>} */}
               </Box>
             </FormControl>
 

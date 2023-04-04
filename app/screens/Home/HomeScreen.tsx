@@ -51,6 +51,9 @@ const HomeScreen = observer(() => {
   const onAddPress = useCallback(() => {
     navigation.navigate("AddCar")
   }, [])
+  const onWelcomeScreenPress = useCallback(() => {
+    navigation.navigate("WelcomeScreen")
+  }, [])
   const onCameraPress = useCallback(() => {
     navigation.navigate("CameraScreen")
   }, [])
@@ -97,6 +100,13 @@ const HomeScreen = observer(() => {
                   Add to the collection
                 </Text>
               </Box>
+            </Touchable>
+            {/* saved component for setting user testing */}
+            <Touchable onPress={onWelcomeScreenPress}>
+              <AntDesign name="pluscircleo" size={36} color="white" />
+              <Text fontSize={10} color="white">
+                adding context
+              </Text>
             </Touchable>
           </HStack>
         </LinearGradient>

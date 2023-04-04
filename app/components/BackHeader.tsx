@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react"
 import { ViewStyle, Animated, Dimensions, Keyboard } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Text, Box, HStack, VStack, View, Input } from "native-base"
@@ -6,6 +6,7 @@ import Touchable from "./Touchable"
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
 import { api } from "../services/api"
 import { User } from "../types/types"
+import { AppContext } from "../screens/context/userContext"
 
 type BackHeaderProps = {
   title: string
@@ -19,23 +20,35 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
   const [isVisible, setVisible] = useState(false)
   const [inputWidth] = useState(new Animated.Value(0))
   const opacityAnim = useRef(new Animated.Value(1)).current
+
+  const { users } = useContext(AppContext)
+  useEffect(() => {
+    if (!users.id) {
+      noUserErrorHandler()
+    }
+  }, [users])
   const handleBlur = () => {
     Keyboard.dismiss()
   }
+  // getting user from database. commented to copy code if we have login screen. for now we only have sign up screen
 
-  function getUserById(user: User) {
-    return user
-  }
-  const [user, setUser] = useState(null)
+  // function getUserById(user: User) {
+  //   return user
+  // }
+  // const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    async function fun() {
-      const data = await api.getUser("1679306069692")
+  // useEffect(() => {
+  //   async function fun() {
+  //     const data = await api.getUser("1679306069692")
 
-      setUser(getUserById(data.user))
-    }
+  //     setUser(getUserById(data.user))
+  //   }
 
-    fun()
+  //   fun()
+  // }, [])
+
+  const noUserErrorHandler = useCallback(() => {
+    navigation.navigate("WelcomeScreen")
   }, [])
 
   useEffect(() => {
@@ -46,9 +59,7 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
     }).start()
   }, [isVisible])
   // add new function to handle search icon press
-  const onSearchPress = useCallback(() => {
-    setVisible(true)
-  }, [])
+
   const onBack = useCallback(() => {
     navigation.goBack()
   }, [])
@@ -68,7 +79,7 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
           <Touchable onPress={onProfilePress}>
             <Box alignItems="center" bg={"rgba(18, 20, 73, 0.5)"} borderRadius={20} p={2} mr={2}>
               <Text color={"white"} fontSize={12}>
-                {/* {user[0]?.firstName || "ja :D"} */} ja :D
+                {users.name}
               </Text>
             </Box>
           </Touchable>

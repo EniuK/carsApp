@@ -1,13 +1,16 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useContext } from "react"
 import { Button, Switch, Text, Box, VStack, ArrowBackIcon, HStack } from "native-base"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import BackHeader from "../../components/BackHeader"
 import User from "../context/User"
 import { useNavigation } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
+import { AppContext } from "../context/userContext"
 
 const ProfileScreen = () => {
   const navigation = useNavigation()
+  const { setUsers } = useContext(AppContext)
+
   const onBack = useCallback(() => {
     navigation.goBack()
   }, [])
@@ -53,7 +56,7 @@ const ProfileScreen = () => {
               borderWidth={2}
               borderColor={"#132788"}
               width={"60%"}
-              onPress={() => User.prototype.updateData(" ", " ", false)}
+              onPress={() => setUsers({})}
             >
               <Text color={"#132788"} bold>
                 Log out
