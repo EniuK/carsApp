@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>we would like to use microhone bla bla bla</string>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +53,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+		<key>NSMicrophoneUsageDescription</key>
+  	<string>Description of why you require the use of the microphone</string>
+  	<key>NSSpeechRecognitionUsageDescription</key>
+ 	<string>Description of why you require the use of the speech recognition</string>
 </dict>
 </plist>

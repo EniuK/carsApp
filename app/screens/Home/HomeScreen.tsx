@@ -52,7 +52,7 @@ const HomeScreen = observer(() => {
     navigation.navigate("AddCar")
   }, [])
   const onWelcomeScreenPress = useCallback(() => {
-    navigation.navigate("WelcomeScreen")
+    navigation.navigate("VoiceTest")
   }, [])
   const onCameraPress = useCallback(() => {
     navigation.navigate("CameraScreen")

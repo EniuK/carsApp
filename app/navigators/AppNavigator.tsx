@@ -37,6 +37,7 @@ import LoginScreen from "../screens/Profile/LoginScreen"
 import CreateUser from "../screens/Profile/CreateUserScreen"
 import ElementsReached from "../screens/PayScreens/ReachedLimitScreen"
 import SubscriptionScreen from "../screens/PayScreens/SubscriptionScreen"
+import VoiceTest from "../screens/voicetest"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -66,6 +67,7 @@ export type AppStackParamList = {
   CreateUser: undefined
   ElementsReached: undefined
   SubscriptionScreen: undefined
+  VoiceTest: undefined
 }
 
 /**
@@ -109,6 +111,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="CreateUser" component={CreateUser} />
           <Stack.Screen name="ElementsReached" component={ElementsReached} />
           <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
+          <Stack.Screen name="VoiceTest" component={VoiceTest} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -126,6 +129,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="CreateUser" component={CreateUser} />
           <Stack.Screen name="ElementsReached" component={ElementsReached} />
           <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
+          <Stack.Screen name="VoiceTest" component={VoiceTest} />
         </Stack.Group>
       )}
     </Stack.Navigator>
