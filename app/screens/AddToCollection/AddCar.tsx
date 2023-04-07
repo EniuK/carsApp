@@ -9,10 +9,7 @@ import {
   Divider,
   Input,
   FormControl,
-  Button,
   View,
-  HStack,
-  Checkbox,
 } from "native-base"
 import BackHeader from "../../components/BackHeader"
 import CardCar from "../../../assets/images/card_car.png"
@@ -24,7 +21,8 @@ import { api } from "../../services/api"
 import { ElementToAdd } from "../../types/types"
 import Touchable from "../../components/Touchable"
 import { AppContext } from "../context/userContext"
-
+import CollectionOption from "../../components/CollectionOption"
+import { AddCarContext } from "../context/addCarContext"
 const ElementSchema = object({
   carLink: string().url().nullable(),
   model: string().required(),
@@ -54,6 +52,8 @@ const AddCar = () => {
   ]
   const navigation = useNavigation()
   const { users } = useContext(AppContext)
+  const { collections } = useContext(AddCarContext)
+  const [collectionsID, setCollectionsID] = useState([])
 
   const initialElement = {
     carLink:
@@ -72,43 +72,21 @@ const AddCar = () => {
   }
   const [element, setElement] = useState<ElementToAdd>(initialElement)
   // pobiera kolekcje z bazy danych by moc pozniej do nich przypisac element
-  const [collections, setCollections] = useState([])
+  const [collectionsLocal, setCollectionsLocal] = useState(collections)
 
   useEffect(() => {
     const fun = async () => {
       const getUserCollections = await api.getUserCollections(users.id)
-      setCollections(getUserCollections.userCollections)
+      setCollectionsLocal(getUserCollections.userCollections)
     }
     fun()
   }, [])
 
-  // funkcja na checkbox (do zmiany) razem z komponentem ktory ma dzialac na podobnej zasadzie co wybor kolorow
-  // const handleOptionSelect = (option) => {
-  //   if (collections.includes(option)) {
-  //     setCollections(collections.filter((selectedOption) => selectedOption !== option))
-  //   } else {
-  //     setCollections([...collections, option])
-  //   }
-  // }
-  // {collections.map((option) => (
-  //   <Touchable key={option} onPress={() => handleOptionSelect(option)}>
-  //     <Box>
-  //       <Checkbox
-  //         isChecked={collections.includes(option)}
-  //         onPress={() => handleOptionSelect(option)}
-  //       />
-  //       <Box>
-  //         <Text>{option}</Text>
-  //       </Box>
-  //     </Box>
-  //   </Touchable>
-  // ))}
   const handleChange = (key, value) => {
     setElement((prevState) => ({ ...prevState, [key]: value }))
   }
   const handleSubmit = async () => {
     try {
-      // nie dziala - nie zapisuje ostatniego wybranego koloru
       const walidacja = await ElementSchema.validate(element)
 
       const elementsToCheck = await api.getAllUserElements(users.id)
@@ -118,7 +96,6 @@ const AddCar = () => {
       if (elementsToCheck.userElements.length > 50) {
         navigation.navigate("ElementsReached")
       } else {
-        console.log(element)
         await api.addElement(element, users.id)
 
         navigation.navigate("ModelDetailsScreen", { items: element })
@@ -127,20 +104,23 @@ const AddCar = () => {
       console.log(error)
     }
   }
+
   const [isOpen, setIsOpen] = useState(false)
   const [selectedColors, setSelectedColors] = useState([])
   const heightValue = isOpen ? new Animated.Value(150) : new Animated.Value(0)
+
   const handleColorPress = (color) => {
+    let newColors = []
+
     if (selectedColors.includes(color)) {
-      setSelectedColors(
-        selectedColors.filter((c) => {
-          return c !== color
-        }),
-      )
+      newColors = selectedColors.filter((c) => {
+        return c !== color
+      })
     } else {
-      setSelectedColors([...selectedColors, color])
+      newColors = [...selectedColors, color]
     }
-    setElement({ ...element, colors: [...selectedColors] })
+    setSelectedColors(newColors)
+    setElement({ ...element, colors: newColors })
   }
 
   const toggleOpen = () => {
@@ -150,6 +130,11 @@ const AddCar = () => {
       duration: 500,
       useNativeDriver: false,
     }).start()
+  }
+  const handleOptionChange = (options) => {
+    const collectionsIDToAdd = options.map((e: any) => e.id)
+
+    setElement({ ...element, collectionsId: collectionsIDToAdd })
   }
   return (
     <Box>
@@ -324,6 +309,9 @@ const AddCar = () => {
                 <Buttonv2 padding={false} onPress={handleSubmit}>
                   ADD TO MY COLLECTION
                 </Buttonv2>
+                {collectionsLocal && (
+                  <CollectionOption options={collectionsLocal} onChange={handleOptionChange} />
+                )}
               </Box>
             </VStack>
           </KeyboardAvoidingView>
@@ -333,22 +321,4 @@ const AddCar = () => {
   )
 }
 
-const $shadow: ViewStyle = {
-  shadowColor: "#000",
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-
-  elevation: 5,
-}
-const $iconContainer: ViewStyle = {
-  padding: 5,
-  marginBottom: 2,
-  marginRight: 2,
-  borderRadius: 20,
-  backgroundColor: "#09154d",
-}
 export default AddCar

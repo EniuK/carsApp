@@ -307,6 +307,7 @@ dependencies {
     }
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile project(':@react-native-community_voice')
 }
 
 
