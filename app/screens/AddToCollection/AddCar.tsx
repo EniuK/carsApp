@@ -305,13 +305,15 @@ const AddCar = () => {
                     </Text>
                   </Box>
                 </FormControl>
+                <FormControl>
+                  {collectionsLocal && (
+                    <CollectionOption options={collectionsLocal} onChange={handleOptionChange} />
+                  )}
+                </FormControl>
 
                 <Buttonv2 padding={false} onPress={handleSubmit}>
                   ADD TO MY COLLECTION
                 </Buttonv2>
-                {collectionsLocal && (
-                  <CollectionOption options={collectionsLocal} onChange={handleOptionChange} />
-                )}
               </Box>
             </VStack>
           </KeyboardAvoidingView>

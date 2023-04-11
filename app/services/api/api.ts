@@ -17,8 +17,7 @@ import type {
   ApiFeedResponse, // @demo remove-current-line
 } from "./api.types"
 import type { EpisodeSnapshotIn } from "../../models/Episode" // @demo remove-current-line
-import { CollectionDb, CollectionWithElements, ElementToAdd } from "../../types/types"
-import User from "../../screens/context/User"
+import { CollectionDb, CollectionWithElements, ElementToAdd, User } from "../../types/types"
 
 /**
  * Configuring the apisauce instance.
@@ -234,6 +233,19 @@ export class Api {
     const rawData = response.data
     return {
       userCollections: rawData as any,
+    }
+  }
+
+  async deleteElement(elementId: any): Promise<
+    | {
+        kind: "ok"
+      }
+    | GeneralApiProblem
+  > {
+    await this.apisauce.delete(`/elements/:${elementId}`)
+    console.log("hej")
+    return {
+      kind: "ok",
     }
   }
 }

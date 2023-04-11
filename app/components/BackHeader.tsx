@@ -31,22 +31,6 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
   const handleBlur = () => {
     Keyboard.dismiss()
   }
-  // getting user from database. commented to copy code if we have login screen. for now we only have sign up screen
-
-  // function getUserById(user: User) {
-  //   return user
-  // }
-  // const [user, setUser] = useState(null)
-
-  // useEffect(() => {
-  //   async function fun() {
-  //     const data = await api.getUser("1679306069692")
-
-  //     setUser(getUserById(data.user))
-  //   }
-
-  //   fun()
-  // }, [])
 
   const noUserErrorHandler = useCallback(() => {
     navigation.navigate("WelcomeScreen")

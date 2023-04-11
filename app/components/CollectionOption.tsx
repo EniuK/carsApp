@@ -29,7 +29,7 @@ const OptionSelector = ({ options, onChange }) => {
   return (
     <View>
       <TouchableOpacity onPress={toggleExpanded}>
-        <Text>{expanded ? "Hide options" : "Show options"}</Text>
+        <Text>{expanded ? "Hide Collections" : "Show Collections"}</Text>
       </TouchableOpacity>
 
       {expanded && (

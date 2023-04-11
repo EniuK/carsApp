@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
-import { Text, Box, VStack, Image, HStack, SectionList, FlatList, View } from "native-base"
-import { useNavigation } from "@react-navigation/native"
+import React, { useContext, useEffect, useState } from "react"
+import { Text, Box, VStack, Image, HStack, FlatList } from "native-base"
+import { useNavigation, useFocusEffect } from "@react-navigation/native"
 import Touchable from "../../components/Touchable"
 import { api } from "../../services/api"
 import { CollectionWithElements } from "../../types/types"
 import car3 from "../../../assets/images/car3.jpeg"
-
+import { AppContext } from "../context/userContext"
 function getSectionListDataFromUserElements(userElements: CollectionWithElements[]) {
   return userElements.map((element) => ({
     title: element.name,
@@ -16,16 +16,16 @@ function getSectionListDataFromUserElements(userElements: CollectionWithElements
 const CollectionFragment = () => {
   const navigation = useNavigation()
   const [collection, setCollection] = useState(null)
-
-  useEffect(() => {
-    async function fun() {
-      const data = await api.getUserElements("1679306069692")
-
-      setCollection(getSectionListDataFromUserElements(data.userElements))
-    }
-
-    fun()
-  }, [])
+  const { users } = useContext(AppContext)
+  useFocusEffect(
+    React.useCallback(() => {
+      async function fetchData() {
+        const data = await api.getUserElements(users.id)
+        setCollection(getSectionListDataFromUserElements(data.userElements))
+      }
+      fetchData()
+    }, []),
+  )
   const CollectionItem = ({ item }) => {
     const elements = item.data
     return (
