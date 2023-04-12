@@ -13,7 +13,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { useEffect } from "react"
+import React from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
 // import { useStores } from "../models" // @demo remove-current-line
@@ -38,6 +38,7 @@ import CreateUser from "../screens/Profile/CreateUserScreen"
 import ElementsReached from "../screens/PayScreens/ReachedLimitScreen"
 import SubscriptionScreen from "../screens/PayScreens/SubscriptionScreen"
 import VoiceTest from "../screens/voicetest"
+import EditCar from "../screens/AddToCollection/EditCarScreen"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -67,7 +68,8 @@ export type AppStackParamList = {
   CreateUser: undefined
   ElementsReached: undefined
   SubscriptionScreen: undefined
-  VoiceTest: undefined
+  VoiceTest: undefined // to delete
+  EditCar: undefined
 }
 
 /**
@@ -112,6 +114,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ElementsReached" component={ElementsReached} />
           <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
           <Stack.Screen name="VoiceTest" component={VoiceTest} />
+          <Stack.Screen name="EditCar" component={EditCar} />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -130,6 +133,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ElementsReached" component={ElementsReached} />
           <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
           <Stack.Screen name="VoiceTest" component={VoiceTest} />
+          <Stack.Screen name="EditCar" component={EditCar} />
         </Stack.Group>
       )}
     </Stack.Navigator>

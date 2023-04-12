@@ -4,7 +4,6 @@ import { VStack, Text, Box, ScrollView, HStack } from "native-base"
 import { useNavigation } from "@react-navigation/native"
 import RecentNewsFragment from "./RecentNewsFragment"
 import ScreenWrapper from "../../components/ScreenWrapper"
-import { observer } from "mobx-react-lite"
 import { AntDesign } from "@expo/vector-icons"
 import { ViewStyle } from "react-native"
 import Touchable from "../../components/Touchable"
@@ -21,24 +20,9 @@ export type CollectionDb = Array<{
   featured: boolean
 }>
 
-const HomeScreen = observer(() => {
-  const initialFeaturedCollections = [
-    {
-      id: "123456789",
-      name: "moja kolekcja",
-      ownerUserId: "123",
-      featured: true,
-    },
-    {
-      id: "32131213",
-      name: "moja kolekcja",
-      ownerUserId: "123",
-      featured: true,
-    },
-  ]
+const HomeScreen = () => {
   const navigation = useNavigation()
-  const [featuredCollections, setFeaturedCollections] = useState(initialFeaturedCollections)
-
+  const [featuredCollections, setFeaturedCollections] = useState([])
   useEffect(() => {
     async function fun() {
       const data = await api.getFeaturedCollections()
@@ -102,18 +86,18 @@ const HomeScreen = observer(() => {
               </Box>
             </Touchable>
             {/* saved component for setting user testing */}
-            <Touchable onPress={onWelcomeScreenPress}>
+            {/* <Touchable onPress={onWelcomeScreenPress}>
               <AntDesign name="pluscircleo" size={36} color="white" />
               <Text fontSize={10} color="white">
                 adding context
               </Text>
-            </Touchable>
+            </Touchable> */}
           </HStack>
         </LinearGradient>
       </Box>
     </ScreenWrapper>
   )
-})
+}
 
 const $articlesContainer: ViewStyle = {
   marginBottom: 30,

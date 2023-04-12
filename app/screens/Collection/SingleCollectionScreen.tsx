@@ -13,12 +13,9 @@ const SingleCollectionScreen = ({ route }) => {
   const navigation = useNavigation()
 
   const collection = route.params.item || {}
-  const initialCollectionElements = [
-    {
-      name: "hej",
-    },
-  ]
-  const [collectionElements, setCollectionElements] = useState(initialCollectionElements)
+
+  const [collectionElements, setCollectionElements] = useState([])
+  console.log(collectionElements)
   useEffect(() => {
     async function fun() {
       const data = await api.getFeaturedCollectionElements(collection.id)
@@ -30,13 +27,13 @@ const SingleCollectionScreen = ({ route }) => {
 
   const displayElement = (item) => {
     return (
-      <View h={300}>
+      <View key={item.index} h={300}>
         <Touchable
           onPress={() => {
-            navigation.navigate("ModelDetailsScreen", { items: item })
+            navigation.navigate("ModelDetailsScreen", { items: item.item })
           }}
         >
-          <Image source={CardCar} w={windowWidth} h={200} />
+          <Image source={CardCar} w={windowWidth} h={200} alt="car" />
         </Touchable>
         <Box justifyContent={"center"} alignItems={"center"}>
           <Text color={"black"} fontSize={24}>

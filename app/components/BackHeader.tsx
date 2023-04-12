@@ -4,18 +4,18 @@ import { useNavigation } from "@react-navigation/native"
 import { Text, Box, HStack, VStack, View, Input } from "native-base"
 import Touchable from "./Touchable"
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons"
-import { api } from "../services/api"
-import { User } from "../types/types"
 import { AppContext } from "../screens/context/userContext"
 
 type BackHeaderProps = {
   title: string
   rightAccessory?: React.ReactNode
   hideHeader?: boolean
+  params: any
+  shortHeader: any
 }
 const windowHeight = Dimensions.get("window").height
 
-const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
+const BackHeader = ({ title, hideHeader, params, shortHeader }: BackHeaderProps) => {
   const navigation = useNavigation()
   const [isVisible, setVisible] = useState(false)
   const [inputWidth] = useState(new Animated.Value(0))
@@ -36,6 +36,10 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
     navigation.navigate("WelcomeScreen")
   }, [])
 
+  const onEditPress = useCallback(() => {
+    navigation.navigate("EditCar", (route = { params }))
+  }, [])
+
   useEffect(() => {
     Animated.timing(opacityAnim, {
       toValue: isVisible ? 0 : 1,
@@ -53,7 +57,15 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
   }, [])
 
   return (
-    <VStack style={hideHeader ? $heightOfContainer2 : $heightOfContainer}>
+    <VStack
+      style={
+        hideHeader
+          ? $heightOfContainer2
+          : shortHeader
+          ? $heightOfContainer3
+          : $heightOfContainer || $heightOfContainer2
+      }
+    >
       <HStack style={$header}>
         <Box pt={0} ml={4}>
           <Text fontSize="18" fontWeight={"extrabold"} color="white" letterSpacing="xs">
@@ -89,7 +101,9 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
                     {title}
                   </Text>
                 </Animated.Text>
-                {title === "Add new" || title === "SingleCollection" ? null : (
+                {title === "Add new" ||
+                title === "SingleCollection" ||
+                title === "EditModel" ? null : (
                   <Box alignItems={"flex-end"} pr={2} flex={1}>
                     <HStack>
                       <HStack bg={"rgba(29, 29, 29, 0.5)"} borderRadius={40}>
@@ -103,15 +117,17 @@ const BackHeader = ({ title, hideHeader }: BackHeaderProps) => {
                                   : { borderRadius: 20, backgroundColor: "rgba(29, 29, 29, 0.5)" }
                               }
                             >
-                              <AntDesign name="edit" size={24} color="white" />
+                              <Touchable onPress={onEditPress}>
+                                <AntDesign name="edit" size={24} color="white" />
+                              </Touchable>
                             </Box>
                           ) : (
                             <Touchable
                               onPress={() => {
                                 setVisible(!isVisible)
                                 Animated.timing(inputWidth, {
-                                  toValue: isVisible ? 0 : 300, // change the width of the input field
-                                  duration: 300, // set the animation duration
+                                  toValue: isVisible ? 0 : 300,
+                                  duration: 300,
                                   useNativeDriver: false,
                                 }).start()
                               }}
@@ -177,6 +193,9 @@ const $heightOfContainer: ViewStyle = {
 }
 const $heightOfContainer2: ViewStyle = {
   height: windowHeight * 0.06,
+}
+const $heightOfContainer3: ViewStyle = {
+  height: windowHeight * 0.1,
 }
 
 const $header: ViewStyle = {

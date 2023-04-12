@@ -53,7 +53,6 @@ const AddCar = () => {
   const navigation = useNavigation()
   const { users } = useContext(AppContext)
   const { collections } = useContext(AddCarContext)
-  const [collectionsID, setCollectionsID] = useState([])
 
   const initialElement = {
     carLink:
@@ -67,8 +66,8 @@ const AddCar = () => {
     description: "",
     owneruserid: users.id,
     colors: [""],
-    collectionId: "test",
     collectionsId: [],
+    isFavourite: false,
   }
   const [element, setElement] = useState<ElementToAdd>(initialElement)
   // pobiera kolekcje z bazy danych by moc pozniej do nich przypisac element
