@@ -1,5 +1,5 @@
-import { SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Animated } from "react-native"
-import React, { useCallback, useContext, useEffect, useState } from "react"
+import { SafeAreaView, KeyboardAvoidingView, Platform, Animated } from "react-native"
+import React, { useContext, useEffect, useState } from "react"
 import {
   Text,
   Box,
@@ -104,6 +104,9 @@ const AddCar = () => {
     }
   }
 
+  const onCameraPress = () => {
+    navigation.navigate("CameraScreen")
+  }
   const [isOpen, setIsOpen] = useState(false)
   const [selectedColors, setSelectedColors] = useState([])
   const heightValue = isOpen ? new Animated.Value(150) : new Animated.Value(0)
@@ -174,6 +177,7 @@ const AddCar = () => {
                     pr={20}
                     pl={20}
                     style={{ borderWidth: 1, borderColor: "blue" }}
+                    onPress={onCameraPress}
                   >
                     Add photo
                   </Text>

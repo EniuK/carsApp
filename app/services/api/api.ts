@@ -248,6 +248,84 @@ export class Api {
       kind: "ok",
     }
   }
+
+  async changeElement(
+    changedElement: ElementToAdd,
+    userId: string,
+  ): Promise<
+    | {
+        kind: "ok"
+        element: ElementToAdd
+      }
+    | GeneralApiProblem
+  > {
+    const el = {
+      ...changedElement,
+    }
+
+    const response = await this.apisauce.post(
+      `/elements/${el.id}`,
+      { ...el },
+      {
+        headers: {
+          owneruserid: userId,
+        },
+      },
+    )
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      element: rawData as ElementToAdd,
+    }
+  }
+
+  async changeFavourite(
+    element: ElementToAdd,
+    favourite: boolean,
+    userId: string,
+  ): Promise<
+    | {
+        kind: "ok"
+        element: ElementToAdd
+      }
+    | GeneralApiProblem
+  > {
+    const el = {
+      ...element,
+      isFavourite: favourite,
+    }
+
+    const response = await this.apisauce.post(
+      `/elements/${el.id}`,
+      { ...el },
+      {
+        headers: {
+          owneruserid: userId,
+        },
+      },
+    )
+
+    const rawData = response.data
+
+    return {
+      kind: "ok",
+      element: rawData as ElementToAdd,
+    }
+  }
+
+  async getFavouriteElements(
+    userId: string,
+  ): Promise<{ userFavourites: any; kind: "ok" } | GeneralApiProblem> {
+    const response = await this.apisauce.get(`/favourites/${userId}`)
+
+    const rawData = response.data
+    return {
+      userFavourites: rawData as any,
+      kind: "ok",
+    }
+  }
 }
 
 // Singleton instance of the API for convenience
