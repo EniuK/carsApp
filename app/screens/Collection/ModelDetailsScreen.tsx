@@ -1,6 +1,6 @@
 import { ViewStyle, Dimensions } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Text, Box, VStack, Image, HStack, Divider } from "native-base"
 import BackHeader from "../../components/BackHeader"
 import LinearGradient from "react-native-linear-gradient"
@@ -15,6 +15,7 @@ const ModelDetails = ({ route }) => {
   const { items } = route.params
   const { users } = useContext(AppContext)
   const [del, setDel] = useState(false)
+  const [fav, setFav] = useState(items.isFavourite)
   const windowWidth = Dimensions.get("window").width
   const colors = items.colors
   const colorsToCheck = [
@@ -29,6 +30,12 @@ const ModelDetails = ({ route }) => {
     "gray.400",
     "#FFD700", // gold
   ]
+  useEffect(() => {
+    setFav(items.isFavourite)
+  }, [])
+  console.log(fav)
+  // console.log(items.isFavourite)
+
   const containerStyle = {
     opacity: del ? 0.2 : 1,
   }
@@ -43,7 +50,12 @@ const ModelDetails = ({ route }) => {
     navigation.navigate("CollectionScreen")
   }
 
-  console.log(items)
+  const fun = async () => {
+    const bol = !fav
+    setFav(bol)
+    await api.changeFavourite(items, bol, users.id)
+  }
+
   return (
     <Box bg={"black"}>
       <Box style={containerStyle}>
@@ -54,7 +66,7 @@ const ModelDetails = ({ route }) => {
           colors={["#06153C", "#2917FC", "#192f6a"]}
         >
           <SafeAreaView>
-            <BackHeader title="ModelDetails" params={items} />
+            <BackHeader title="ModelDetails" params={items} favourite={fav} setFavourite={fun} />
           </SafeAreaView>
         </LinearGradient>
 

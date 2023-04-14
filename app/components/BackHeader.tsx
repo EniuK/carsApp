@@ -10,17 +10,25 @@ type BackHeaderProps = {
   title: string
   rightAccessory?: React.ReactNode
   hideHeader?: boolean
-  params: any
-  shortHeader: any
+  params?: any
+  shortHeader?: any
+  setFavourite?: any
+  favourite?: boolean
 }
 const windowHeight = Dimensions.get("window").height
 
-const BackHeader = ({ title, hideHeader, params, shortHeader }: BackHeaderProps) => {
+const BackHeader = ({
+  title,
+  hideHeader,
+  params,
+  shortHeader,
+  setFavourite,
+  favourite,
+}: BackHeaderProps) => {
   const navigation = useNavigation()
   const [isVisible, setVisible] = useState(false)
   const [inputWidth] = useState(new Animated.Value(0))
   const opacityAnim = useRef(new Animated.Value(1)).current
-
   const { users } = useContext(AppContext)
 
   useEffect(() => {
@@ -167,7 +175,11 @@ const BackHeader = ({ title, hideHeader, params, shortHeader }: BackHeaderProps)
 
                       <Box p={2} bg={"rgba(18, 20, 73, 0.5)"} rounded={20}>
                         {title === "ModelDetails" ? (
-                          <Feather name="star" size={24} color="white" />
+                          favourite ? (
+                            <AntDesign name="star" size={24} color="white" onPress={setFavourite} />
+                          ) : (
+                            <Feather name="star" size={24} color="black" onPress={setFavourite} />
+                          )
                         ) : (
                           <Feather name="plus" size={24} color="white" />
                         )}
