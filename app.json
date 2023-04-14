@@ -1,5 +1,13 @@
 {
   "name": "carsApp",
+  "plugins": [
+    [
+      "react-native-vision-camera",
+      {
+        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+      }
+    ]
+  ],
   "displayName": "carsApp",
   "expo": {
     "name": "carsApp",
